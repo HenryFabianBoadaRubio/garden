@@ -16,8 +16,8 @@ import {
 
 
 import {
-    getClientsFromSpain,
-} from "./module/requests.js.js"
+    orderStatusList,
+} from "./module/requests.js"
 
-console.log(await getClientsFromSpai());
+console.log(await orderStatusList());
 
