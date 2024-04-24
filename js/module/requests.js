@@ -15,3 +15,19 @@ export const orderStatusList = async()=>{
     return uniqueStatusArray;
 
 }
+
+//9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
+export const getAllCodeRequestLate =async()=>{
+    let res= await fetch("http://localhost:5508/requests?data_wait_ne_date_delivery")
+    let data =await res.json();
+    let dataUpdate= data.map(val =>({
+
+            Codigo_pedido: val.code_request,
+            Codigo_cliente: val.code_client,
+            Fecha_esperada: val.date_wait,
+            Fecha_entrega: val.date_delivery
+        }));
+        return dataUpdate;
+    };
+
+
