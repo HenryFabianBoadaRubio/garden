@@ -12,6 +12,7 @@ import {
 
 import {
     getClientsFromSpain,
+    
 } from "./module/clients.js"
 
 
@@ -19,5 +20,10 @@ import {
     orderStatusList,
 } from "./module/requests.js"
 
-console.log(await orderStatusList());
+import {
+    customerPaymentCode2008,
+} from "./module/payments.js"
+
+
+console.log(await customerPaymentCode2008());
 
