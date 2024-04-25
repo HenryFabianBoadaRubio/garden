@@ -12,7 +12,7 @@ import {
 
 import {
     getClientsFromSpain,
-    
+    getAllClientsMadrid1130
 } from "./module/clients.js"
 
 
@@ -38,5 +38,5 @@ import {
 } from "./module/products.js"
 
 
-console.log(await getAllGamaOrnamentales());
+console.log(await getAllClientsMadrid1130());
 
