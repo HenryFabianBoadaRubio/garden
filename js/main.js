@@ -28,8 +28,9 @@ import {
 
 import {
     customerPaymentCode2008,
+    getAllPaymentsPaypal2008
 } from "./module/payments.js"
 
 
-console.log(await getAllDeliveredJanuary());
+console.log(await getAllPaymentsPaypal2008());
 
