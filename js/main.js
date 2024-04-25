@@ -20,7 +20,8 @@ import {
     orderStatusList,
     getAllCodeRequestLate,
     getAllEarlyCodeRequest,
-    getAllRejected2009
+    getAllRejected2009,
+    getAllDeliveredJanuary
 
 
 } from "./module/requests.js"
@@ -30,5 +31,5 @@ import {
 } from "./module/payments.js"
 
 
-console.log(await getAllRejected2009());
+console.log(await getAllDeliveredJanuary());
 
