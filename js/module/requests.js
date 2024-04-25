@@ -56,3 +56,22 @@ export const getAllEarlyCodeRequest = async()=> {
 });
     return dataUpdate
 }
+
+//11.Devuelve un listado de todos los pedidos que fueron **rechazados** en `2009`.
+
+export const getAllRejected2009 = async ()=>{
+    let res= await fetch("http://localhost:5508/requests?status=Rechazado");
+    let data= await res.json();
+    let dataUpdate=[];
+    data.forEach(val=> {
+        if(val.date_request.split("-")[0]==="2009"){
+            dataUpdate.push({
+
+                ...val
+            }
+            );
+        };
+
+    });
+    return dataUpdate
+}
