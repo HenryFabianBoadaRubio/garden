@@ -18,7 +18,10 @@ import {
 
 import {
     orderStatusList,
-    getAllCodeRequestLate
+    getAllCodeRequestLate,
+    getAllEarlyCodeRequest
+
+
 } from "./module/requests.js"
 
 import {
@@ -26,5 +29,5 @@ import {
 } from "./module/payments.js"
 
 
-console.log(await getAllCodeRequestLate());
+console.log(await getAllEarlyCodeRequest());
 

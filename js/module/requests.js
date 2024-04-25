@@ -31,3 +31,28 @@ export const getAllCodeRequestLate =async()=>{
     };
 
 
+//10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
+export const getAllEarlyCodeRequest = async()=> {
+    let res= await fetch ("http://localhost:5508/requests");
+    let data =await res.json();
+    let dataUpdate=[];
+    
+    data.forEach(val => {
+        let fechaespera= new Date (val.date_wait);  
+        let fechaentrega= new Date (val.date_delivery);
+        let diferencia=Math.abs(fechaespera.getTime()-fechaentrega.getTime());
+        let diferenciatotal=Math.ceil(diferencia/(1000*60*60*24));
+        if (fechaentrega < fechaespera && (val.date_wait && val.date_delivery)){
+            if(diferenciatotal>=2){
+                dataUpdate.push({
+                    Codigo_pedido: val.code_request,
+                    Codigo_cliente: val.code_client,
+                    Fecha_entrega: val.date_delivery,
+                    Fecha_esperada: val.date_wait
+                })
+            }
+        }
+
+});
+    return dataUpdate
+}
