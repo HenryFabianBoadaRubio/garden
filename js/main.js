@@ -28,9 +28,15 @@ import {
 
 import {
     customerPaymentCode2008,
-    getAllPaymentsPaypal2008
+    getAllPaymentsPaypal2008,
+    getAllPaymentsMethods
 } from "./module/payments.js"
 
+import {
+    getAllGamaOrnamentales,
+    
+} from "./module/products.js"
 
-console.log(await getAllPaymentsPaypal2008());
+
+console.log(await getAllGamaOrnamentales());
 
