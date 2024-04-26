@@ -44,3 +44,24 @@ export const getAll = async()=>{
     });
     return dataUpdate;
 }
+
+//multitabla
+/*1. Obtén un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
+--solucion 1.1(employees), 1.2 (clients)*/
+
+export const getAllNameRepresentSales= async ()=>{
+    let res= await fetch("http://localhost:5502/employees?position=Representante%20Ventas")
+    let data= await res.json();
+    let dataUpdate=[];
+    data.forEach(val=>{
+        dataUpdate.push({
+            nombre: val.name,
+            apellidos: `${val.lastname1} ${val.lastname2}`,
+            puesto: val.position,
+            codigo: val.employee_code,
+
+
+        });
+    });
+    return dataUpdate
+}

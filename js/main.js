@@ -7,12 +7,14 @@ import {
     getAllEmployeesWithBossAndCodeSeven,
     getBossFullNameAndEmail,
     getAll,
+    getAllNameRepresentSales
     
 } from "./module/employees.js";
 
 import {
     getClientsFromSpain,
-    getAllClientsMadrid1130
+    getAllClientsMadrid1130,
+    getAllClientsAndRepresentSales
 } from "./module/clients.js"
 
 
@@ -37,6 +39,7 @@ import {
     
 } from "./module/products.js"
 
+// console.log(await getAllNameRepresentSales());
 
-console.log(await getAllClientsMadrid1130());
+console.log(await getAllClientsAndRepresentSales());
 

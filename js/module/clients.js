@@ -29,3 +29,33 @@ export const getAllClientsMadrid1130 = async ()=>{
     });
     return dataUpdate
 }
+
+
+//multitabla
+/*1. Obtén un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
+--solucion 1.1(employees), 1.2 (clients)*/
+
+import {getAllNameRepresentSales} from "./employees.js"
+export const getAllClientsAndRepresentSales= async()=>{
+    let res =await fetch("http://localhost:5501/clients")
+    let dataClients=await res.json();
+    let dataManager= await getAllNameRepresentSales();
+    let dataUpdate=[];
+
+    dataClients.forEach(val=>{
+        dataManager.forEach(dat=>{
+            if(val.code_employee_sales_manager == dat.codigo){
+                dataUpdate.push({
+                    nombre_cliente: val.client_name,
+                    nombre_representate: dat.nombre,
+                    apellido_representante: dat.apellidos,
+                    codigo_representante_ventas: dat.codigo
+
+                });
+            };
+        });
+    });
+            return dataUpdate
+    }
+
+
