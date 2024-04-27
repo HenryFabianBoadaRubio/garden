@@ -55,3 +55,27 @@ export const getAllPaymentsMethods = async ()=>{
     return uniqueStatusArray;
 
 }
+
+//multitabla
+
+//2. Muestra el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes de ventas.
+
+export const getAllPayments = async ()=>{
+    let res= await fetch("http://localhost:5505/payments?code_client")
+    let data = await res.json();
+    let dataUpdate=[];
+    // let dataUpdate= new Set();
+
+    data.forEach(val=>{
+        dataUpdate.push({
+
+           codigo_cliente: val.code_client,
+        }
+            
+        )
+        
+    })
+    // let uniqueStatusArray = Array.from(dataUpdate);//convertir el ser en un array
+
+    return dataUpdate
+}
