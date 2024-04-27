@@ -44,14 +44,13 @@ import {
 
 // console.log(await getAllNameRepresentSales());
 
-console.log(await getAllOfficesFromSpainCityAndMovil());
 
 
 //TABLAS PRIMEROS 16 EJERCICIOS 
 // console.log(await getAllOfficesCodeAndCity());  //Ejercicio 1
 // console.log(await getAllOfficesFromSpainCityAndMovil()); // Ejercicio 2
-console.log(await getAllEmployeesWithBossAndCodeSeven()); //EJercicio 3
-// console.log(await getAllOfficesFromSpainCityAndMovil());
+// console.log(await getAllEmployeesWithBossAndCodeSeven()); //EJercicio 3
+console.log(await getBossFullNameAndEmail());//Ejercicio 4
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 // console.log(await getAllOfficesFromSpainCityAndMovil());

@@ -1,6 +1,6 @@
 // import "./components/clock.js";
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
-import {getAllEmployeesWithBossAndCodeSeven} from "./module/employees.js"
+import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail} from "./module/employees.js"
 
 // import { getClientsEmploy } from "./module/clients.js";
 
@@ -91,7 +91,7 @@ queryAboutTable3.addEventListener("click", async(e)=>{
             
                 <div class="card__body">
                     <div class="body__marck">
-                        <p><b>Nombre_empleado: </b>${val.nombre}</p>
+                        <p><b>Nombre_empleado: </b>${val.puesto}</p>
                         <p><b>Apellidos: </b>${val.apellidos}</p>
                         <p><b>Email: </b>${val.email}</p>
 
@@ -100,6 +100,36 @@ queryAboutTable3.addEventListener("click", async(e)=>{
             </div>
             `;
         });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa.
+queryAboutTable4.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable4.children
+    if(!report__container.innerHTML){
+        let data = await getBossFullNameAndEmail();
+        let plantilla = "";
+        console.log(data);
+        
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div> Jefe empresa</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Puesto: </b>${data.puesto}</p>
+                        <p><b>Nombre: </b>${data.nombre}</p>
+                        <p><b>Apellidos: </b>${data.apellidos}</p>
+                        <p><b>Email: </b>${data.email}</p>
+
+                    </div>
+                </div>
+            </div>
+            `;
+
         report__container.innerHTML = plantilla;
     }
 })
