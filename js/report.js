@@ -1,6 +1,6 @@
 // import "./components/clock.js";
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
-import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail} from "./module/employees.js"
+import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
 
 // import { getClientsEmploy } from "./module/clients.js";
 
@@ -130,6 +130,36 @@ queryAboutTable4.addEventListener("click", async(e)=>{
             </div>
             `;
 
+        report__container.innerHTML = plantilla;
+    }
+})
+
+//5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas.
+
+queryAboutTable5.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable5.children
+    if(!report__container.innerHTML){
+        let data = await getAll();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div> Empleados , NO representante</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre_empleado: </b>${val.nombre}</p>
+                        <p><b>Apellidos: </b>${val.apellidos}</p>
+                        <p><b>Puesto: </b>${val.puesto}</p>
+
+                    </div>
+                </div>
+            </div>
+            `;
+        });
         report__container.innerHTML = plantilla;
     }
 })

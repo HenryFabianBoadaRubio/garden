@@ -50,8 +50,8 @@ import {
 // console.log(await getAllOfficesCodeAndCity());  //Ejercicio 1
 // console.log(await getAllOfficesFromSpainCityAndMovil()); // Ejercicio 2
 // console.log(await getAllEmployeesWithBossAndCodeSeven()); //EJercicio 3
-console.log(await getBossFullNameAndEmail());//Ejercicio 4
-// console.log(await getAllOfficesFromSpainCityAndMovil());
+// console.log(await getBossFullNameAndEmail());//Ejercicio 4
+console.log(await getAll());//Ejercicio 5
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 // console.log(await getAllOfficesFromSpainCityAndMovil());
