@@ -15,7 +15,8 @@ import {
     getClientsFromSpain,
     getAllClientsMadrid1130,
     getAllClientsAndRepresentSales,
-    getAllClientsAndRepresentSalesPayments
+    getAllClientsAndRepresentSalesPayments,
+    getAllClientsNoPay
 } from "./module/clients.js"
 
 
@@ -43,5 +44,5 @@ import {
 
 // console.log(await getAllNameRepresentSales());
 
-console.log(await getAllClientsAndRepresentSalesPayments());
+console.log(await getAllClientsNoPay());
 

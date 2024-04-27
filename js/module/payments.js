@@ -79,3 +79,17 @@ export const getAllPayments = async ()=>{
 
     return dataUpdate
 }
+
+
+//33. Muestra el nombre de los clientes que **no** hayan realizado pagos junto con el nombre de sus representantes de ventas.
+// export const getAllClientsNoPay =async ()=>{
+//     let res= await fetch("http://localhost:5505/payments")
+//     let data=await res.json();
+//     let dataUpdate=[]
+//     data.forEach(val=>{
+//         dataUpdate.push({
+
+//         })
+//     })
+
+// }

@@ -89,3 +89,37 @@ export const getAllClientsAndRepresentSalesPayments= async()=>{
     
             return dataUpdate
     }
+
+
+//3. Muestra el nombre de los clientes que **no** hayan realizado pagos junto con el nombre de sus representantes de ventas.
+    //
+
+    // import {getAllPayments} from "./payments.js"
+// import {getAllNameRepresentSales} from "./employees.js"
+export const getAllClientsNoPay= async()=>{
+    let res =await fetch("http://localhost:5501/clients")
+    let dataClients=await res.json();
+    let dataManager= await getAllNameRepresentSales();
+    let date_payments= await getAllPayments()
+    let dataUpdate=new Set();
+    
+
+    dataClients.forEach(val=>{
+        dataManager.forEach(dat=>{
+            date_payments.forEach(dato=>{
+                if(val.code_employee_sales_manager == dat.codigo && val.client_code !== dato.codigo_cliente){
+                    dataUpdate.add({
+                        nombre_cliente: val.client_name,
+                        codigo_cliente: val.client_code,
+                        nombre_representate: dat.nombre,
+                        apellido_representante: dat.apellidos,
+                        codigo_representante_ventas: dat.codigo 
+                    });
+                }
+        
+            })
+            })
+        });
+    
+            return dataUpdate
+    }
