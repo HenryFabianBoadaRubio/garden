@@ -1,6 +1,7 @@
 // import "./components/clock.js";
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
+import {getClientsFromSpain} from "./module/clients.js"
 
 // import { getClientsEmploy } from "./module/clients.js";
 
@@ -154,6 +155,36 @@ queryAboutTable5.addEventListener("click", async(e)=>{
                         <p><b>Nombre_empleado: </b>${val.nombre}</p>
                         <p><b>Apellidos: </b>${val.apellidos}</p>
                         <p><b>Puesto: </b>${val.puesto}</p>
+
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+//6. Devuelve un listado con el nombre de los todos los clientes españoles.
+
+queryAboutTable6.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable6.children
+    if(!report__container.innerHTML){
+        let data = await getClientsFromSpain();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div> Clientes españoles</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre_Clientes: </b>${val.nombre}</p>
+                        <p><b>Nacionalidad: </b>${val.nacionalidad}</p>
+                
 
                     </div>
                 </div>
