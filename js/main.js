@@ -55,8 +55,8 @@ import {
 // console.log(await getClientsFromSpain());//Ejercicio 6
 // console.log(await orderStatusList()); // Ejercicio 7
 // console.log(await customerPaymentCode2008()); //Ejercicio 8
-console.log(await getAllCodeRequestLate());// Ejercico 9
-// console.log(await getAllOfficesFromSpainCityAndMovil());
+// console.log(await getAllCodeRequestLate());// Ejercico 9
+console.log(await getAllEarlyCodeRequest()); //Ejercicio 10
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 
