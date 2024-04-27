@@ -2,7 +2,8 @@
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
 import {getClientsFromSpain} from "./module/clients.js"
-import {orderStatusList} from "./module/requests.js"
+import {orderStatusList,getAllCodeRequestLate} from "./module/requests.js"
+import {customerPaymentCode2008} from "./module/payments.js"
 
 // import { getClientsEmploy } from "./module/clients.js";
 
@@ -227,3 +228,63 @@ queryAboutTable7.addEventListener("click", async(e)=>{
     }
 })
 
+// 8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. 
+queryAboutTable8.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable8.children
+    if(!report__container.innerHTML){
+        let data = await customerPaymentCode2008();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(payment => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Clientes codigo pago 2008</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo_cliente: </b>${payment}</p>
+                        
+                
+
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+//9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
+
+queryAboutTable9.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable9.children
+    if(!report__container.innerHTML){
+        let data = await getAllCodeRequestLate();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Pedidos no entregados a tiempo</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo_pedido: </b>${val.Codigo_pedido}</p>
+                        <p><b>Codigo_cliente: </b>${val.Codigo_cliente}</p>
+                        <p><b>Fecha_esperada: </b>${val.Fecha_esperada}</p>
+                        <p><b>Fecha_entrega: </b>${val.Fecha_entrega}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// 10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
