@@ -52,8 +52,8 @@ import {
 // console.log(await getAllEmployeesWithBossAndCodeSeven()); //EJercicio 3
 // console.log(await getBossFullNameAndEmail());//Ejercicio 4
 // console.log(await getAll());//Ejercicio 5
-console.log(await getClientsFromSpain());//Ejercicio 6
-// console.log(await getAllOfficesFromSpainCityAndMovil());
+// console.log(await getClientsFromSpain());//Ejercicio 6
+console.log(await orderStatusList()); // Ejercicio 7
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 // console.log(await getAllOfficesFromSpainCityAndMovil());
