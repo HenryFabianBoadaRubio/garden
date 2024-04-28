@@ -58,7 +58,7 @@ export const getAllPaymentsMethods = async ()=>{
 
 //multitabla
 
-//2. Muestra el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes de ventas.
+//2.(USO ESTA MISMA PARA EL EJERCICIO 3 DE MULTITABLA) Muestra el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes de ventas.
 
 export const getAllPayments = async ()=>{
     let res= await fetch("http://localhost:5505/payments?code_client")

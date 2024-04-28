@@ -97,32 +97,50 @@ export const getAllClientsAndRepresentSalesPayments= async()=>{
 //3. Muestra el nombre de los clientes que **no** hayan realizado pagos junto con el nombre de sus representantes de ventas.
     //
 
-    // import {getAllPayments} from "./payments.js"
-// import {getAllNameRepresentSales} from "./employees.js"
-export const getAllClientsNoPay= async()=>{
-    let res =await fetch("http://localhost:5501/clients")
-    let dataClients=await res.json();
-    let dataManager= await getAllNameRepresentSales();
-    let date_payments= await getAllPayments()
-    let dataUpdate=new Set();
-    
-
-    dataClients.forEach(val=>{
-        dataManager.forEach(dat=>{
-            date_payments.forEach(dato=>{
-                if(val.code_employee_sales_manager == dat.codigo && val.client_code !== dato.codigo_cliente){
-                    dataUpdate.add({
-                        nombre_cliente: val.client_name,
-                        codigo_cliente: val.client_code,
-                        nombre_representate: dat.nombre,
-                        apellido_representante: dat.apellidos,
-                        codigo_representante_ventas: dat.codigo 
-                    });
+    // import {getAllPayments} from "./payments.js"// NO LA USO PORQUE ESTA ARRIBA
+    // import {getAllNameRepresentSales} from "./employees.js"
+    export const getAllClientsAndRepresentSalesNotPayments= async()=>{
+        let dataClients = await getAllClientsAndRepresentSales();
+        let datapayment =await getAllPayments()
+        let dataUpdate=[];
+        for ( let client of dataClients ){
+            let pago_encontrado = false
+            for ( let pay of datapayment){
+                if( pay.codigo_cliente == client.codigo_cliente ){
+                    pago_encontrado = true
                 }
-        
-            })
-            })
-        });
-    
-            return dataUpdate
+
+
+            }
+            if(!pago_encontrado){
+                dataUpdate.push( client)
+            }            
+        }
+        return dataUpdate
     }
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
