@@ -1,7 +1,8 @@
 // import "./components/clock.js";
+import {getAllGamaOrnamentales} from "./module/products.js"
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
-import {getClientsFromSpain} from "./module/clients.js"
+import {getClientsFromSpain,getAllClientsMadrid1130} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods} from "./module/payments.js"
 
@@ -438,6 +439,77 @@ queryAboutTable14.addEventListener("click", async(e)=>{
                         
                         <p><b>Tipo_pago: </b>${val}</p>
                 
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// 15. Devuelve un listado con todos los productos que pertenecen a la gama `Ornamentales` y que tienen más de `100` unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio.
+
+queryAboutTable15.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable15.children
+    if(!report__container.innerHTML){
+        let data = await getAllGamaOrnamentales();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Productos ornamentales >100 - stock</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo_producto: </b>${val.code_product}</p>
+                        <p><b>Nombre: </b>${val.name}</p>
+                        <p><b>Gama: </b>${val.gama}</p>
+                        <p><b>Dimension: </b>${val.dimension}</p>
+                        <p><b>Provedor: </b>${val.provider}</p>
+                        <p><b>Stock: </b>${val.stock}</p>
+                        <p><b>Precio_venta: </b>${val.price_sale}</p>
+                        <p><b>id: </b>${val.id}</p>
+                        
+
+
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// 16. Devuelve un listado con todos los clientes que sean de la ciudad de `Madrid` y cuyo representante de ventas tenga el código de empleado `11` o `30`.
+
+queryAboutTable16.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable16.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsMadrid1130();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Clientes madrid y representante legal</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo_cliente: </b>${val.client_code}</p>
+                        <p><b>Nombre_cliente: </b>${val.client_name}</p>
+                        <p><b>Celular: </b>${val.phone}</p>
+                        <p><b>Direccion: </b>${val.address1}</p>
+                        <p><b>Ciudad: </b>${val.city}</p>
+                        <p><b>Pais: </b>${val.country}</p>
+                        <p><b>Codigo_representante: </b>${val.code_employee_sales_manager}</p>
+                        <p><b>id: </b>${val.id}</p>
                     </div>
                 </div>
             </div>

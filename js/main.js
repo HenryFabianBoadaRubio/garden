@@ -60,8 +60,8 @@ import {
 // console.log(await getAllRejected2009()); //Ejercicio 11
 // console.log(await getAllDeliveredJanuary()); //Ejercicio 12
 // console.log(await getAllPaymentsPaypal2008()); //Ejercicio 13
-console.log(await getAllPaymentsMethods()); //Ejercicio 14
-// console.log(await getAllDeliveredJanuary()); //Ejercicio 12
-// console.log(await getAllDeliveredJanuary()); //Ejercicio 12
+// console.log(await getAllPaymentsMethods()); //Ejercicio 14
+// console.log(await getAllGamaOrnamentales()); //Ejercicio 15
+console.log(await getAllClientsMadrid1130()); //Ejercicio 16
 
 
