@@ -3,7 +3,7 @@ import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./mod
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
 import {getClientsFromSpain} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
-import {customerPaymentCode2008,getAllPaymentsPaypal2008} from "./module/payments.js"
+import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods} from "./module/payments.js"
 
 // import { getClientsEmploy } from "./module/clients.js";
 
@@ -409,6 +409,35 @@ queryAboutTable13.addEventListener("click", async(e)=>{
                         
 
 
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// 14. Devuelve un listado con todas las formas de pago que aparecen en la tabla `pago`. Tenga en cuenta que no deben aparecer formas de pago repetidas.
+
+queryAboutTable14.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable14.children
+    if(!report__container.innerHTML){
+        let data = await getAllPaymentsMethods();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Formas de pago</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        
+                        <p><b>Tipo_pago: </b>${val}</p>
+                
                     </div>
                 </div>
             </div>
