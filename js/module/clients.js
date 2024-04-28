@@ -50,7 +50,7 @@ export const getAllClientsAndRepresentSales= async()=>{
                     nombre_cliente: val.client_name,
                     nombre_representate: dat.nombre,
                     apellido_representante: dat.apellidos,
-                    codigo_representante_ventas: dat.codigo
+                    codigo_representante_ventas: dat.codigo,
 
                 });
             };
@@ -82,7 +82,9 @@ export const getAllClientsAndRepresentSalesPayments= async()=>{
                         nombre_representate: dat.nombre,
                         apellido_representante: dat.apellidos,
                         codigo_representante_ventas: dat.codigo,
-                        tipo_pago:dato.tipo_pago
+                        tipo_pago:dato.tipo_pago,
+                        codigo_oficina: dat.codigo_oficina
+
                     }));
                 }
         
@@ -93,7 +95,7 @@ export const getAllClientsAndRepresentSalesPayments= async()=>{
             return Array.from(dataUpdate).map(element => JSON.parse(element))
     }
 
-
+//multitabla
 //3. Muestra el nombre de los clientes que **no** hayan realizado pagos junto con el nombre de sus representantes de ventas.
     //
 
@@ -118,7 +120,28 @@ export const getAllClientsAndRepresentSalesPayments= async()=>{
         }
         return dataUpdate
     }
+        //multitabla
+    //4. Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+    import {getAllOfficesCodeAndCity} from  "./offices.js"
+    export const getAllClientsAndRepresentSalesandoffice= async()=>{
+        let client_manager= await getAllClientsAndRepresentSalesPayments();
+        let offices= await getAllOfficesCodeAndCity ();
+        let dataUpdate=[];
+        client_manager.forEach(val=>{
+            offices.forEach(ofi=>{
+                if(val.codigo_oficina== ofi.codigo){
+                    dataUpdate.push({
 
+                        nombre_cliente: val.nombre_cliente,
+                        nombre_representate:val.nombre_representate,
+                        ciudad_oficina_representante: ofi.ciudad
+                    }
+                    )
+
+            }})
+        })
+        return dataUpdate
+    }
  
 
 

@@ -60,6 +60,7 @@ export const getAllNameRepresentSales= async ()=>{
             apellidos: `${val.lastname1} ${val.lastname2}`,
             puesto: val.position,
             codigo: val.employee_code,
+            codigo_oficina: val.code_office
 
 
         });
