@@ -70,6 +70,7 @@ export const getAllPayments = async ()=>{
         dataUpdate.push({
 
            codigo_cliente: val.code_client,
+           tipo_pago: val.payment
         }
             
         )

@@ -65,4 +65,13 @@ import {
 // console.log(await getAllClientsMadrid1130()); //Ejercicio 16
 
 //MULTITABLAS!
-console.log(await getAllClientsAndRepresentSales());// 1 ejercicio multitabla
+// console.log(await getAllClientsAndRepresentSales());// 1 ejercicio multitabla
+console.log(await getAllClientsAndRepresentSalesPayments()); //Ejercicio 15
+// console.log(await getAllGamaOrnamentales()); //Ejercicio 15
+// console.log(await getAllGamaOrnamentales()); //Ejercicio 15
+// console.log(await getAllGamaOrnamentales()); //Ejercicio 15
+// console.log(await getAllGamaOrnamentales()); //Ejercicio 15
+// console.log(await getAllGamaOrnamentales()); //Ejercicio 15
+// console.log(await getAllGamaOrnamentales()); //Ejercicio 15
+
+

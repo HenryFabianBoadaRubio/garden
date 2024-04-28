@@ -76,19 +76,21 @@ export const getAllClientsAndRepresentSalesPayments= async()=>{
         dataManager.forEach(dat=>{
             date_payments.forEach(dato=>{
                 if(val.code_employee_sales_manager == dat.codigo && val.client_code == dato.codigo_cliente){
-                    dataUpdate.add({
+                    dataUpdate.add(JSON.stringify({
+                        codigo_pago_cliente: dato.codigo_cliente,
                         nombre_cliente: val.client_name,
                         nombre_representate: dat.nombre,
                         apellido_representante: dat.apellidos,
-                        codigo_representante_ventas: dat.codigo 
-                    });
+                        codigo_representante_ventas: dat.codigo,
+                        tipo_pago:dato.tipo_pago
+                    }));
                 }
         
             })
             })
         });
     
-            return dataUpdate
+            return Array.from(dataUpdate).map(element => JSON.parse(element))
     }
 
 
