@@ -46,6 +46,7 @@ export const getAllClientsAndRepresentSales= async()=>{
         dataManager.forEach(dat=>{
             if(val.code_employee_sales_manager == dat.codigo){
                 dataUpdate.push({
+                    codigo_cliente:val.client_code,
                     nombre_cliente: val.client_name,
                     nombre_representate: dat.nombre,
                     apellido_representante: dat.apellidos,

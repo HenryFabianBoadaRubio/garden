@@ -62,6 +62,7 @@ import {
 // console.log(await getAllPaymentsPaypal2008()); //Ejercicio 13
 // console.log(await getAllPaymentsMethods()); //Ejercicio 14
 // console.log(await getAllGamaOrnamentales()); //Ejercicio 15
-console.log(await getAllClientsMadrid1130()); //Ejercicio 16
+// console.log(await getAllClientsMadrid1130()); //Ejercicio 16
 
-
+//MULTITABLAS!
+console.log(await getAllClientsAndRepresentSales());// 1 ejercicio multitabla

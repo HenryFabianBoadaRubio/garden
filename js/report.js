@@ -6,6 +6,10 @@ import {getClientsFromSpain,getAllClientsMadrid1130} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods} from "./module/payments.js"
 
+
+//MULTITABLAS!
+import {getAllClientsAndRepresentSales} from"./module/clients.js"
+// import {getAllNameRepresentSales} from "./module/employees.js"
 // import { getClientsEmploy } from "./module/clients.js";
 
 const queryAboutTable1 = document.querySelector("#queryAboutTable1");
@@ -510,6 +514,40 @@ queryAboutTable16.addEventListener("click", async(e)=>{
                         <p><b>Pais: </b>${val.country}</p>
                         <p><b>Codigo_representante: </b>${val.code_employee_sales_manager}</p>
                         <p><b>id: </b>${val.id}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+//MULTITABLA!
+// 1. Obtén un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
+// --solucion 1.1(employees), 1.2 (clients)
+
+queryAboutTable17.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable17.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsAndRepresentSales();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Nombre cliente y representante ventas</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo_cliente: </b>${val.codigo_cliente}</p>
+                        <p><b>Nombre_cliente: </b>${val.nombre_cliente}</p>
+                        <p><b>Nombre_representante: </b>${val.nombre_representate}</p>
+                        <p><b>Apellido_representante: </b>${val.apellido_representante}</p>
+                        <p><b>Codigo_representante: </b>${val.codigo_representante_ventas}</p>
+                        
                     </div>
                 </div>
             </div>
