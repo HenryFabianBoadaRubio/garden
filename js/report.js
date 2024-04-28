@@ -2,7 +2,7 @@
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
 import {getClientsFromSpain} from "./module/clients.js"
-import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009} from "./module/requests.js"
+import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
 import {customerPaymentCode2008} from "./module/payments.js"
 
 // import { getClientsEmploy } from "./module/clients.js";
@@ -328,6 +328,40 @@ queryAboutTable11.addEventListener("click", async(e)=>{
                 <div class="report__card">
                 <div class="card__title">
                     <div>Pedidos rechazados 2009</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo_solicitud: </b>${val.code_request}</p>
+                        <p><b>Fecha_solicitud: </b>${val.date_request}</p>
+                        <p><b>Fecha_esperada: </b>${val.date_wait}</p>
+                        <p><b>Fecha_entrega: </b>${val.date_delivery}</p>
+                        <p><b>Estado: </b>${val.status}</p>
+                        <p><b>Codigo_cliente: </b>${val.code_client}</p>
+                        <p><b>id: </b>${val.id}</p>
+
+
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// 12. Devuelve un listado de todos los pedidos que han sido **entregados** en el mes de enero de cualquier año. -->
+queryAboutTable12.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable12.children
+    if(!report__container.innerHTML){
+        let data = await getAllDeliveredJanuary();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Pedidos entregados enero</div>
                 </div>
             
                 <div class="card__body">
