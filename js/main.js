@@ -58,6 +58,10 @@ import {
 // console.log(await getAllCodeRequestLate());// Ejercico 9
 // console.log(await getAllEarlyCodeRequest()); //Ejercicio 10
 // console.log(await getAllRejected2009()); //Ejercicio 11
-console.log(await getAllDeliveredJanuary()); //Ejercicio 12
+// console.log(await getAllDeliveredJanuary()); //Ejercicio 12
+console.log(await getAllPaymentsPaypal2008()); //Ejercicio 13
+// console.log(await getAllDeliveredJanuary()); //Ejercicio 12
+// console.log(await getAllDeliveredJanuary()); //Ejercicio 12
+// console.log(await getAllDeliveredJanuary()); //Ejercicio 12
 
 

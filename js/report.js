@@ -3,7 +3,7 @@ import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./mod
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
 import {getClientsFromSpain} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
-import {customerPaymentCode2008} from "./module/payments.js"
+import {customerPaymentCode2008,getAllPaymentsPaypal2008} from "./module/payments.js"
 
 // import { getClientsEmploy } from "./module/clients.js";
 
@@ -373,6 +373,40 @@ queryAboutTable12.addEventListener("click", async(e)=>{
                         <p><b>Estado: </b>${val.status}</p>
                         <p><b>Codigo_cliente: </b>${val.code_client}</p>
                         <p><b>id: </b>${val.id}</p>
+
+
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// <!-- 13. Devuelve un listado con todos los pagos que se realizaron en el año `2008` mediante `Paypal`. Ordene el resultado de mayor a menor. -->
+queryAboutTable13.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable13.children
+    if(!report__container.innerHTML){
+        let data = await getAllPaymentsPaypal2008();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Pagos paypal 2008</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo_cliente: </b>${val.code_client}</p>
+                        <p><b>Tipo_pago: </b>${val.payment}</p>
+                        <p><b>id_pago: </b>${val.id_transaction}</p>
+                        <p><b>Fecha_pago: </b>${val.date_payment}</p>
+                        <p><b>total_pago: </b>${val.total}</p>
+                        <p><b>id: </b>${val.id}</p>
+                        
 
 
                     </div>
