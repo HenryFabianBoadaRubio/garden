@@ -123,7 +123,7 @@ export const getAllClientsAndRepresentSalesPayments= async()=>{
         //multitabla
     //4. Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
     import {getAllOfficesCodeAndCity} from  "./offices.js"
-    export const getAllClientsAndRepresentSalesandoffice= async()=>{
+    export const getAllClientsAndRepresentSalesandofficeAndPay= async()=>{  //le agrege andpay al final si sale mal algo quitarlo.
         let client_manager= await getAllClientsAndRepresentSalesPayments();
         let offices= await getAllOfficesCodeAndCity ();
         let dataUpdate=[];
@@ -143,8 +143,59 @@ export const getAllClientsAndRepresentSalesPayments= async()=>{
         return dataUpdate
     }
  
+    //multitabla
+    //5. Devuelve el nombre de los clientes que **no** hayan hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+//     export const getAllClientsAndRepresentSalesandofficeNotPay = async()=>{
+//         let client_manager= await getAllClientsAndRepresentSalesNotPayments();
+//         let offices= await getAllOfficesCodeAndCity ();
+//         let dataUpdate=[];
+//         // client_manager.forEach(val=>{
+//         //     offices.forEach(ofi=>{
+//         //         if(val.codigo_oficina== ofi.codigo){
+//         //             dataUpdate.push(
+//         //                 client
+//         //             )
 
+//         //     }})
+//         // })
+//         for (let client of client_manager){
+//             for(let office of offices){
+//                 if(client.code_employee_sales_manager==office.code_office){
+//                     dataUpdate.push({
+//                         nombre_cliente: client.nombre_cliente,
+//                         nombre_representate: client.nombre_representate,
+//                         ciudad_oficina: office.ciudad
 
+//                     })
+//             }
+//         }
+//     }
+//     return dataUpdate
+// }
+export const getAllClientsAndRepresentSalesandofficeNotPay = async () => {
+    let client_manager = await getAllClientsAndRepresentSalesNotPayments();
+    let offices = await getAllOfficesCodeAndCity();
+    let dataUpdate = [];
+    let seenClients = new Set(); // Utilizamos un conjunto para registrar los clientes vistos
+
+    for (let client of client_manager) {
+        for (let office of offices) {
+            if (client.code_employee_sales_manager === office.code_office) {
+                // Verificamos si el cliente ya ha sido agregado
+                const clientKey = `${client.nombre_cliente}-${client.nombre_representate}`;
+                if (!seenClients.has(clientKey)) {
+                    dataUpdate.push({
+                        nombre_cliente: client.nombre_cliente,
+                        nombre_representate: client.nombre_representate,
+                        ciudad_oficina: office.ciudad
+                    });
+                    seenClients.add(clientKey); // Agregamos el cliente al conjunto de clientes vistos
+                }
+            }
+        }
+    }
+    return dataUpdate;
+}
 
 
 
