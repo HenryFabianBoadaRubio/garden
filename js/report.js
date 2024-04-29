@@ -2,7 +2,7 @@
 import {getAllGamaOrnamentales} from "./module/products.js"
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
-import {getClientsFromSpain,getAllClientsMadrid1130} from "./module/clients.js"
+import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods} from "./module/payments.js"
 
@@ -543,6 +543,37 @@ queryAboutTable17.addEventListener("click", async(e)=>{
                 <div class="card__body">
                     <div class="body__marck">
                         <p><b>Codigo_cliente: </b>${val.codigo_cliente}</p>
+                        <p><b>Nombre_cliente: </b>${val.nombre_cliente}</p>
+                        <p><b>Nombre_representante: </b>${val.nombre_representate}</p>
+                        <p><b>Apellido_representante: </b>${val.apellido_representante}</p>
+                        <p><b>Codigo_representante: </b>${val.codigo_representante_ventas}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+// 2. Muestra el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes de ventas.
+
+queryAboutTable18.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable18.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsAndRepresentSalesPayments();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Clientes con pagos y representante</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo_cliente: </b>${val.codigo_pago_cliente}</p>
                         <p><b>Nombre_cliente: </b>${val.nombre_cliente}</p>
                         <p><b>Nombre_representante: </b>${val.nombre_representate}</p>
                         <p><b>Apellido_representante: </b>${val.apellido_representante}</p>
