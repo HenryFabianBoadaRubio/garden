@@ -2,7 +2,7 @@
 import {getAllGamaOrnamentales} from "./module/products.js"
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
-import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay} from "./module/clients.js"
+import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods} from "./module/payments.js"
 
@@ -568,7 +568,7 @@ queryAboutTable18.addEventListener("click", async(e)=>{
             plantilla += `
                 <div class="report__card">
                 <div class="card__title">
-                    <div>Clientes con pagos y representante</div>
+                    <div>Clientes CON pagos y representante</div>
                 </div>
             
                 <div class="card__body">
@@ -600,7 +600,7 @@ queryAboutTable19.addEventListener("click", async(e)=>{
             plantilla += `
                 <div class="report__card">
                 <div class="card__title">
-                    <div>Clientes sin pagos y representante</div>
+                    <div>Clientes SIN pagos y representante</div>
                 </div>
             
                 <div class="card__body">
@@ -632,7 +632,7 @@ queryAboutTable20.addEventListener("click", async(e)=>{
             plantilla += `
                 <div class="report__card">
                 <div class="card__title">
-                    <div>Clientes con pagos y representante con oficina</div>
+                    <div>Clientes CON pagos y representante con oficina</div>
                 </div>
             
                 <div class="card__body">
@@ -648,5 +648,39 @@ queryAboutTable20.addEventListener("click", async(e)=>{
             `;
         });
         report__container.innerHTML = plantilla;
+
+    }
+})
+
+
+// 5. Devuelve el nombre de los clientes que **no** hayan hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+
+queryAboutTable21.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable21.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsAndRepresentSalesandofficeNotPay();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Clientes SIN pagos y representante con oficina</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                       
+                        <p><b>Nombre_cliente: </b>${val.nombre_cliente}</p>
+                        <p><b>Nombre_representante: </b>${val.nombre_representate}</p>
+                        <p><b>Ciudad_oficina_representante: </b>${val.ciudad_oficina}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+
     }
 })
