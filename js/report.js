@@ -1,7 +1,7 @@
 // import "./components/clock.js";
 import {getAllGamaOrnamentales} from "./module/products.js"
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil,getOfficesWithClientsFromFuenlabrada} from "./module/offices.js"
-import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll,getAllEmployeesWithBoss} from "./module/employees.js"
+import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll,getAllEmployeesWithBoss,getAllEmployeesWithBossAndBoss} from "./module/employees.js"
 import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay,getAllClientsAndRepresentSalesOffices} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods} from "./module/payments.js"
@@ -770,6 +770,40 @@ queryAboutTable24.addEventListener("click", async(e)=>{
                        
                         <p><b>nombre_empleado: </b>${val.employee_name}</p>
                         <p><b>nombre_jefe: </b>${val.boss_name}</p>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+
+    }
+})
+
+// 9. Devuelve un listado que muestre el nombre de cada empleados, el nombre de su jefe y el nombre del jefe de sus jefe.
+
+queryAboutTable25.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable25.children
+    if(!report__container.innerHTML){
+        let data = await getAllEmployeesWithBossAndBoss();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>empleado - jefe de jefes</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                       
+                        <p><b>nombre_empleado: </b>${val.nombre_empleado}</p>
+                        <p><b>nombre_jefe: </b>${val.nombre_bigBoss}</p>
+                        <p><b>nombre_jefe_jefe: </b>${val.nombre_bigBoss_bigBoss}</p>
+
                         
                         
                     </div>
