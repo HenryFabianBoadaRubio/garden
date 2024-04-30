@@ -70,5 +70,22 @@ export const getAllNameRepresentSales= async ()=>{
 }
 
 
-//6 fuenlabrada
+// 8. Devuelve un listado con el nombre de los empleados junto con el nombre de sus jefes.
 
+export const getAllEmployeesWithBoss = async() => {
+    let res = await fetch("http://localhost:5502/employees")
+    let dataEmployees = await res.json()
+    let dataUpdate = []
+
+    for (let employee of dataEmployees) {
+        for (let boss of dataEmployees) {
+            if (employee.code_boss == boss.employee_code) {
+                dataUpdate.push({
+                    employee_name: `${employee.name} ${employee.lastname1} ${employee.lastname2}`,
+                    boss_name: `${boss.name} ${boss.lastname1} ${boss.lastname2}`
+                })
+            }
+        }
+    }
+    return dataUpdate
+}
