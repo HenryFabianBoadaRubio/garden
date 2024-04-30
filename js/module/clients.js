@@ -7,8 +7,9 @@ export const getClientsFromSpain = async()=>{
     data.forEach(val => {
         dataUpdate.push({
             nombre: val.client_name,
-            nacionalidad: val.country
-
+            nacionalidad: val.country,
+            codigo:val.code_employee_sales_manager,
+            ciudad: val.city
         })
     });
     return dataUpdate;

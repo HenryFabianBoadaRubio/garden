@@ -1,6 +1,7 @@
 import { 
     getAllOfficesCodeAndCity, 
-    getAllOfficesFromSpainCityAndMovil 
+    getAllOfficesFromSpainCityAndMovil,
+    getOfficesWithClientsFromFuenlabrada
 } from "./module/offices.js";
 
 import { 
@@ -72,7 +73,7 @@ import {
 // console.log(await getAllClientsAndRepresentSalesPayments()); //2 Ejercicio multitabla
 // console.log(await getAllClientsAndRepresentSalesNotPayments()); //3 Ejercicio multitabla
 // console.log(await getAllClientsAndRepresentSalesandofficeAndPay()); // 4 Ejercicio multitabla    
-console.log(await getAllClientsAndRepresentSalesandofficeNotPay()); //5 Ejercicio multitabla
+console.log(await getOfficesWithClientsFromFuenlabrada()); //5 Ejercicio multitabla
 // console.log(await getAllGamaOrnamentales()); //Ejercicio 15
 // console.log(await getAllGamaOrnamentales()); //Ejercicio 15
 // console.log(await getAllGamaOrnamentales()); //Ejercicio 15
