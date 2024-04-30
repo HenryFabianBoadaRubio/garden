@@ -238,10 +238,68 @@ export const getAllClientsAndRepresentSalesOffices = async() => {
 
 }
 
+//CREAMOS ESTA FUNCION PARA OBTENER EL TOTAL DE LOS CLIENTES Y USARLOEN EL EJERCICIO 10 DE MULTITABLAS.
+export const getAllClients = async ()=>{
+    let res =await fetch("http://localhost:5501/clients")
+    let data=await res.json();
+    let dataUpdate = [];
+    let clientCodes = new Set();
+    // data.forEach(val => {
+    //     dataUpdate.push({
+    //         codigo: val.client_code,
+    //         nombre: val.client_name,
+    //         nacionalidad: val.country,
+    //         codigo:val.code_employee_sales_manager,
+    //         ciudad: val.city
+    //     })
+    // });
+    data.forEach(val => {
+        // Verificamos si el código de cliente ya ha sido procesado anteriormente
+        if (!clientCodes.has(val.client_code)) {
+            // Si no ha sido procesado, lo agregamos al Set y a la lista de datos actualizados
+            clientCodes.add(val.client_code);
+            dataUpdate.push({
+                codigo_cliente: val.client_code,
+                nombre_cliente: val.client_name,
+                nacionalidad: val.country,
+                ciudad: val.city
+            });
+        }
+    });
+    return dataUpdate;
+}
 
 
 
 
+
+
+
+
+
+
+//MIRAR ARRIBA ESTA LA PARTE DE LOS CLIENTES FULL
+// 10. Devuelve el nombre de los clientes a los que no se les ha entregado a tiempo un pedido.
+import {getAllCodeRequestLate} from "./requests.js"
+export const getAllClientsWithLateRequests = async() => {
+    
+    let dataLateRequests = await getAllCodeRequestLate()
+    let dataClients = await getAllClients()
+    let dataUpdate = new Set()
+
+    for (let lateRequest of dataLateRequests) {
+        for (let client of dataClients) {
+            if (client.codigo_cliente == lateRequest.Codigo_cliente) {
+                dataUpdate.add(JSON.stringify(
+                    client.nombre_cliente
+                ))
+            }
+        }
+    }
+
+    dataUpdate = Array.from(dataUpdate).map(element => JSON.parse(element))
+    return dataUpdate
+}
 
 
 

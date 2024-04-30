@@ -23,7 +23,9 @@ import {
     getAllClientsAndRepresentSalesNotPayments,
     getAllClientsAndRepresentSalesandofficeAndPay,
     getAllClientsAndRepresentSalesandofficeNotPay,
-    getAllClientsAndRepresentSalesOffices
+    getAllClientsAndRepresentSalesOffices,
+    getAllClients, //total clientes para el ejercicio 10
+    getAllClientsWithLateRequests
 } from "./module/clients.js"
 
 
@@ -80,5 +82,10 @@ import {
 // console.log(await getOfficesWithClientsFromFuenlabrada()); //6 Ejercicio multitabla
 // console.log(await getAllClientsAndRepresentSalesOffices()); // 7 Ejercicio multitabla
 // console.log(await getAllEmployeesWithBoss()); //8 Ejercicio multitabla
-console.log(await getAllEmployeesWithBossAndBoss()); //9 Ejercicio multitabla
+// console.log(await getAllEmployeesWithBossAndBoss()); //9 Ejercicio multitabla
+console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+
+
+
+// console.log(await getAllClients());
 
