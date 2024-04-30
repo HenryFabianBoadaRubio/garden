@@ -89,3 +89,28 @@ export const getAllEmployeesWithBoss = async() => {
     }
     return dataUpdate
 }
+
+//9. Devuelve un listado que muestre el nombre de cada empleados, el nombre de su jefe y el nombre del jefe de sus jefe.
+
+export const getAllEmployeesWithBossAndBoss = async() => {
+    let res = await fetch("http://localhost:5502/employees")
+    let dataEmployees = await res.json()
+    let dataUpdate = []
+
+    for (let employee of dataEmployees) {
+        for (let boss of dataEmployees) {
+            if (employee.code_boss == boss.employee_code) {
+                for (let bigBoss of dataEmployees){
+                    if (boss.code_boss == bigBoss.employee_code){
+                        dataUpdate.push({
+                            nombre_empleado: `${employee.name} ${employee.lastname1} ${employee.lastname2}`,
+                            nombre_bigBoss: `${boss.name} ${boss.lastname1} ${boss.lastname2}`,
+                            nombre_bigBoss_bigBoss: `${bigBoss.name} ${bigBoss.lastname1} ${bigBoss.lastname2}`
+                        })
+                    }
+                }
+            }
+        }
+    }
+    return dataUpdate
+}
