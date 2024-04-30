@@ -56,11 +56,12 @@ export const getAllNameRepresentSales= async ()=>{
     let dataUpdate=[];
     data.forEach(val=>{
         dataUpdate.push({
+            nombre_cliente: val.client_name,
             nombre: val.name,
             apellidos: `${val.lastname1} ${val.lastname2}`,
             puesto: val.position,
             codigo: val.employee_code,
-            codigo_oficina: val.code_office
+            codigo_oficina: val.code_office,
 
 
         });

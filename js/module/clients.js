@@ -53,6 +53,8 @@ export const getAllClientsAndRepresentSales= async()=>{
                     apellido_representante: dat.apellidos,
                     codigo_representante_ventas: dat.codigo,
 
+                    codigo_oficina: dat.code_office
+
                 });
             };
         });
@@ -199,8 +201,42 @@ export const getAllClientsAndRepresentSalesandofficeNotPay = async () => {
 }
 
 
+// 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+// 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+//revisar 
+export const getAllClientsAndRepresentSalesOffices = async() => {
+    let client_manager = await getAllClientsAndRepresentSales();
+    let office = await getAllOfficesCodeAndCity();
+    let dataUpdate=[];
+    client_manager.forEach(val=>{
+        office.forEach(dat=>{
+            // if(val.codigo_oficina == dat.codigo){
 
 
+                dataUpdate.push({
+                    nombre_cliente: val.nombre_cliente,
+                    nombre_representate:val.nombre_representate,
+                    ciudad_oficina_representante: dat.ciudad
+                })
+            // }
+        })
+        // office.forEach(ofi=>{
+        //     if(val.codigo_oficina== ofi.codigo){
+        //         dataUpdate.push({
+
+        //             nombre_cliente: val.codigo_cliente,
+        //             nombre_representate:val.nombre_representate,
+        //             ciudad_oficina_representante: ofi.ciudad
+        //         }
+        //         )
+
+        // }})
+    })
+    
+    return dataUpdate
+
+
+}
 
 
 
