@@ -1,6 +1,6 @@
 // import "./components/clock.js";
 import {getAllGamaOrnamentales} from "./module/products.js"
-import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "./module/offices.js"
+import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil,getOfficesWithClientsFromFuenlabrada} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
 import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
@@ -674,6 +674,38 @@ queryAboutTable21.addEventListener("click", async(e)=>{
                         <p><b>Nombre_cliente: </b>${val.nombre_cliente}</p>
                         <p><b>Nombre_representante: </b>${val.nombre_representate}</p>
                         <p><b>Ciudad_oficina_representante: </b>${val.ciudad_oficina}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+
+    }
+})
+
+// 6. Lista la dirección de las oficinas que tengan clientes en `Fuenlabrada`.
+
+queryAboutTable22.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable22.children
+    if(!report__container.innerHTML){
+        let data = await getOfficesWithClientsFromFuenlabrada();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Oficinas clientes fuenlabrada</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                       
+                        <p><b>Codigo_oficina: </b>${val.code_office}</p>
+                        <p><b>Direccion_1: </b>${val.address}</p>
+                        <p><b>Direccion_2: </b>${val.address2}</p>
                         
                     </div>
                 </div>
