@@ -2,7 +2,7 @@
 import {getAllGamaOrnamentales} from "./module/products.js"
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil,getOfficesWithClientsFromFuenlabrada} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll} from "./module/employees.js"
-import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay} from "./module/clients.js"
+import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay,getAllClientsAndRepresentSalesOffices} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods} from "./module/payments.js"
 
@@ -706,6 +706,39 @@ queryAboutTable22.addEventListener("click", async(e)=>{
                         <p><b>Codigo_oficina: </b>${val.code_office}</p>
                         <p><b>Direccion_1: </b>${val.address}</p>
                         <p><b>Direccion_2: </b>${val.address2}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+
+    }
+})
+
+
+// 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+
+queryAboutTable23.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable23.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsAndRepresentSalesOffices();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Clientes y representantes con su oficina</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                       
+                        <p><b>nombre_cliente: </b>${val.nombre_cliente}</p>
+                        <p><b>nombre_representate: </b>${val.nombre_representate}</p>
+                        <p><b>ciudad_oficina_representante: </b>${val.ciudad_oficina_representante}</p>
                         
                     </div>
                 </div>

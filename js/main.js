@@ -77,8 +77,8 @@ import {
 // console.log(await getAllClientsAndRepresentSalesNotPayments()); //3 Ejercicio multitabla
 // console.log(await getAllClientsAndRepresentSalesandofficeAndPay()); // 4 Ejercicio multitabla    
 // console.log(await getOfficesWithClientsFromFuenlabrada()); //5 Ejercicio multitabla
-console.log(await getOfficesWithClientsFromFuenlabrada()); //6 Ejercicio multitabla
-// console.log(await getAllClientsAndRepresentSalesOffices()); // 7 Ejercicio multitabla
+// console.log(await getOfficesWithClientsFromFuenlabrada()); //6 Ejercicio multitabla
+console.log(await getAllClientsAndRepresentSalesOffices()); // 7 Ejercicio multitabla
 // console.log(await getAllEmployeesWithBoss()); //8 Ejercicio multitabla
 // console.log(await getAllEmployeesWithBossAndBoss()); //9 Ejercicio multitabla
 
