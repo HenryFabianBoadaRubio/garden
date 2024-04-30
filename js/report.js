@@ -2,7 +2,7 @@
 import {getAllGamaOrnamentales} from "./module/products.js"
 import {getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil,getOfficesWithClientsFromFuenlabrada} from "./module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven,getBossFullNameAndEmail,getAll,getAllEmployeesWithBoss,getAllEmployeesWithBossAndBoss} from "./module/employees.js"
-import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay,getAllClientsAndRepresentSalesOffices} from "./module/clients.js"
+import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay,getAllClientsAndRepresentSalesOffices,getAllClientsWithLateRequests} from "./module/clients.js"
 import {orderStatusList,getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "./module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods} from "./module/payments.js"
 
@@ -803,6 +803,39 @@ queryAboutTable25.addEventListener("click", async(e)=>{
                         <p><b>nombre_empleado: </b>${val.nombre_empleado}</p>
                         <p><b>nombre_jefe: </b>${val.nombre_bigBoss}</p>
                         <p><b>nombre_jefe_jefe: </b>${val.nombre_bigBoss_bigBoss}</p>
+
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+
+    }
+})
+
+// 10. Devuelve el nombre de los clientes a los que no se les ha entregado a tiempo un pedido.
+
+queryAboutTable26.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable26.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsWithLateRequests();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Clientes que no se les entrego a tiempo</div>
+                </div>
+            
+                <div class="card__body">
+                    <div class="body__marck">
+                       
+                        <p><b>nombre_cliente: </b>${val}</p>
+                        
 
                         
                         
