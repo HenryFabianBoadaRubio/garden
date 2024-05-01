@@ -31,7 +31,8 @@ import {
     getAllClientsNotPay,
     getAllClientsNotRequest,
     getAllClientsNotRequestsAndPay,
-    getAllEmployeesWithoutClientAndOffice
+    getAllEmployeesWithoutClientAndOffice,
+    getAllEmployeesNotOfficesAndNotClients
 
 } from "./module/clients.js"
 
@@ -100,8 +101,8 @@ import {
 // console.log(await getAllClientsNotRequestsAndPay()); //3 Ejercicio Composición externa
 // console.log(await getAllEmployeesWithoutOffice()); //4 Ejercicio Composición externa
 // console.log(await getAllEmployeesWithoutClient()); //5 Ejercicio Composición externa
-console.log(await getAllEmployeesWithoutClientAndOffice()); //6 Ejercicio Composición externa
-// console.log(await getAllClientsWithLateRequests()); //7 Ejercicio Composición externa
+// console.log(await getAllEmployeesWithoutClientAndOffice()); //6 Ejercicio Composición externa
+console.log(await getAllEmployeesNotOfficesAndNotClients()); //7 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //8 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //9 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //10 Ejercicio Composición externa

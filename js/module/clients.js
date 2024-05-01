@@ -446,3 +446,50 @@ export const getAllEmployeesWithoutClientAndOffice =async ()=>{
     
     return dataUpdate;
 }
+
+
+// 7.Devuelve un listado que muestre los empleados que no tienen una oficina asociada y los que no tienen un cliente asociado.
+export const getAllEmployeesNotOfficesAndNotClients = async ()=> {
+
+    let dataEmployees = await getAllEmployees();
+    let dataClients = await getAllClients();
+    let dataOffices = await getAllOfficesCodeAndCity();
+    let dataUpdate = [];
+    let seenEmployees = new Set(); // Utilizamos un conjunto para registrar los empleados vistos
+    
+    for (let employee of dataEmployees) {
+        let hasAssociatedClient = false;
+        let hasAssociatedOffice = false;
+    
+        // Verificar si el empleado tiene algún cliente asociado
+        for (let client of dataClients) {
+            if (employee.codigo_empleado === client.codigo) {
+                hasAssociatedClient = true;
+                break; // No es necesario seguir buscando más clientes para este empleado
+            }
+        }
+    
+        // Verificar si el empleado tiene alguna oficina asociada
+        for (let office of dataOffices) {
+            if (employee.codigo_oficina === office.codigo_oficina) {
+                hasAssociatedOffice = true;
+                break; // No es necesario seguir buscando más oficinas para este empleado
+            }
+        }
+    
+        // Si el empleado no tiene ni cliente asociado ni oficina asociada, se agrega a dataUpdate
+        if (!hasAssociatedClient || !hasAssociatedOffice) {
+            const employeeKey = `${employee.nombre}-${employee.codigo_empleado}`;
+            if (!seenEmployees.has(employeeKey)) {
+                dataUpdate.push({
+                    codigo_empleado: employee.codigo_empleado,
+                    nombre: employee.nombre,
+                    codigo_oficina: employee.codigo_oficina
+                });
+                seenEmployees.add(employeeKey); // Agregamos el empleado al conjunto de empleados vistos
+            }
+        }
+    }
+    
+    return dataUpdate;
+}
