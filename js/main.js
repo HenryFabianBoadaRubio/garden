@@ -28,6 +28,7 @@ import {
     getAllClientsWithLateRequests,
     getAllClientsNotPay,
     getAllClientsNotRequest,
+    getAllClientsNotRequestsAndPay
 
 } from "./module/clients.js"
 
@@ -92,8 +93,8 @@ import {
 
 // Consultas multitabla (Composición externa)
 // console.log(await getAllClientsNotPay()); //1 Ejercicio Composición externa
-console.log(await getAllClientsNotRequest()); //2 Ejercicio Composición externa
-// console.log(await getAllClientsWithLateRequests()); //3 Ejercicio Composición externa
+// console.log(await getAllClientsNotRequest()); //2 Ejercicio Composición externa
+console.log(await getAllClientsNotRequestsAndPay()); //3 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //4 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //5 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //6 Ejercicio Composición externa

@@ -360,5 +360,56 @@ export const getAllClientsNotRequest =async ()=>{
 }
 
 
+//3.Devuelve un listado que muestre los clientes que no han realizado ningún pago y los que no han realizado ningún pedido.
+export const getAllClientsNotRequestsAndPay = async ()=>{
+
+
+    let dataClients = await getAllClients();
+    let dataPayments = await getAllPayments();
+    let dataRequests = await getAllRequests();
+    let dataUpdate = [];
+    let seenClients = new Set(); // Utilizamos un conjunto para registrar los clientes vistos.
+    
+    for (let client of dataClients) {
+        let hasPayment = false;
+        let hasRequest = false;
+    
+        // Verificar si el cliente tiene pagos
+        for (let payment of dataPayments) {
+            if (client.codigo_cliente === payment.codigo_cliente) {
+                hasPayment = true;
+                break; // No es necesario seguir buscando más pagos para este cliente
+            }
+        }
+    
+        // Verificar si el cliente tiene solicitudes
+        for (let request of dataRequests) {
+            if (client.codigo_cliente === request.codigo_cliente) {
+                hasRequest = true;
+                break; // No es necesario seguir buscando más solicitudes para este cliente
+            }
+        }
+    
+        // Si el cliente no tiene ni pagos ni solicitudes, se agrega a dataUpdate
+        if (!hasPayment && !hasRequest) {
+            const clientKey = `${client.nombre_cliente}-${client.codigo_cliente}`;
+            if (!seenClients.has(clientKey)) {
+                dataUpdate.push({
+                    codigo_cliente: client.codigo_cliente,
+                    nombre_cliente: client.nombre_cliente,
+                    nacionalidad: client.nacionalidad,
+                    ciudad: client.ciudad
+                });
+                seenClients.add(clientKey); // Agregamos el cliente al conjunto de clientes vistos
+            }
+        }
+    }
+    return dataUpdate
+    
+    // dataUpdate ahora contiene la lista de clientes que no han realizado ni pagos ni solicitudes.
+}
+
+
+
 
 
