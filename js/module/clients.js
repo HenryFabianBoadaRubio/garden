@@ -303,7 +303,33 @@ export const getAllClientsWithLateRequests = async() => {
 
 
 
+// Consultas multitabla (Composición externa)
+// 1.Devuelve un listado que muestre solamente los clientes que no han realizado ningún pago.
 
+export const getAllClientsNotPay = async () => {
+    let dataClients = await getAllClients()
+    let dataPayments = await getAllPayments()
+    let dataUpdate = []
+    let seenClients = new Set() // Utilizamos un conjunto para registrar los clientes vistos
+    for (let client of dataClients) {
+        for (let payment of dataPayments) {
+            if (client.codigo_cliente == payment.codigo_cliente) {
+                // Verificamos si el cliente ya ha sido agregado
+                const clientKey = `${client.nombre_cliente}-${client.codigo_cliente}`;
+                if (!seenClients.has(clientKey)) {
+                    dataUpdate.push({
+                        codigo_cliente: client.codigo_cliente,
+                        nombre_cliente: client.nombre_cliente,
+                        nacionalidad: client.nacionalidad,
+                        ciudad: client.ciudad
+                    });
+                    seenClients.add(clientKey); // Agregamos el cliente al conjunto de clientes vistos
+                }
+            }
+        }
+        return dataUpdate
+    
+}}
 
 
 

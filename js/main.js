@@ -25,7 +25,8 @@ import {
     getAllClientsAndRepresentSalesandofficeNotPay,
     getAllClientsAndRepresentSalesOffices,
     getAllClients, //total clientes para el ejercicio 10
-    getAllClientsWithLateRequests
+    getAllClientsWithLateRequests,
+    getAllClientsNotPay
 } from "./module/clients.js"
 
 
@@ -83,9 +84,23 @@ import {
 // console.log(await getAllClientsAndRepresentSalesOffices()); // 7 Ejercicio multitabla
 // console.log(await getAllEmployeesWithBoss()); //8 Ejercicio multitabla
 // console.log(await getAllEmployeesWithBossAndBoss()); //9 Ejercicio multitabla
-console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
 
 
+// Consultas multitabla (Composición externa)
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
 
-// console.log(await getAllClients());
+
+console.log(await getAllClientsNotPay());
 

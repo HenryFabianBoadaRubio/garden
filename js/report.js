@@ -848,3 +848,4 @@ queryAboutTable26.addEventListener("click", async(e)=>{
 
     }
 })
+
