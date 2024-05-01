@@ -83,12 +83,28 @@ export const getAllDeliveredJanuary = async ()=>{
     let data= await res.json();
     let dataUpdate=[];
     data.forEach(val=>{
-        if(val.date_delivery && val.date_delivery.split("-")[1]==="01"){
-            dataUpdate.push({
-                ...val
-            });
-        }
+       dataUpdate.push({
     });
+})
     return dataUpdate
     }   
 
+    //consulta externa
+    // 2.Devuelve un listado que muestre solamente los clientes que no han realizado ningún pedido.
+    export const getAllRequests =async ()=>{
+         let res= await fetch("http://localhost:5508/requests")
+         let data= await res.json();
+        let dataUpdate = []
+        data.forEach(val=>{
+                dataUpdate.push({
+                    
+                    codigo_solicitud: val.code_request,
+                    codigo_cliente: val.code_client,
+                    fecha_solicitud: val.date_request,
+                    fecha_esperada: val.date_wait,
+                    fecha_entrega: val.date_delivery,
+                    estado: val.status,
+         } )  }
+        );
+        return dataUpdate
+        }   

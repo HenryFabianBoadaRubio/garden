@@ -26,7 +26,9 @@ import {
     getAllClientsAndRepresentSalesOffices,
     getAllClients, //total clientes para el ejercicio 10
     getAllClientsWithLateRequests,
-    getAllClientsNotPay
+    getAllClientsNotPay,
+    getAllClientsNotRequest,
+
 } from "./module/clients.js"
 
 
@@ -35,7 +37,8 @@ import {
     getAllCodeRequestLate,
     getAllEarlyCodeRequest,
     getAllRejected2009,
-    getAllDeliveredJanuary
+    getAllDeliveredJanuary,
+    getAllRequests
 
 
 } from "./module/requests.js"
@@ -88,19 +91,19 @@ import {
 
 
 // Consultas multitabla (Composición externa)
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
-// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllClientsNotPay()); //1 Ejercicio Composición externa
+console.log(await getAllClientsNotRequest()); //2 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //3 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //4 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //5 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //6 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //7 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //8 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //9 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //10 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //11 Ejercicio Composición externa
+// console.log(await getAllClientsWithLateRequests()); //12 Ejercicio Composición externa
 
 
-console.log(await getAllClientsNotPay());
+// console.log(await getAllRequests());
 

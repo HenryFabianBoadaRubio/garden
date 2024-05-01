@@ -332,9 +332,32 @@ export const getAllClientsNotPay = async () => {
 }}
 
 
-
-
-
+// 2.Devuelve un listado que muestre solamente los clientes que no han realizado ningún pedido.
+import {getAllRequests} from "./requests.js"
+export const getAllClientsNotRequest =async ()=>{
+    let dataClients = await getAllClients()
+    let dataRequests = await getAllRequests()
+    let dataUpdate = []
+    let seenClients = new Set() // Utilizamos un conjunto para registrar los clientes vistos
+    for (let client of dataClients) {
+        for (let request of dataRequests) {
+            if (client.codigo_cliente == request.codigo_cliente) {
+                // Verificamos si el cliente ya ha sido agregado
+                const clientKey = `${client.nombre_cliente}-${client.codigo_cliente}`;
+                if (!seenClients.has(clientKey)) {
+                    dataUpdate.push({
+                        codigo_cliente: client.codigo_cliente,
+                        nombre_cliente: client.nombre_cliente,
+                        nacionalidad: client.nacionalidad,
+                        ciudad: client.ciudad
+                    });
+                    seenClients.add(clientKey); // Agregamos el cliente al conjunto de clientes vistos
+                }
+            }
+        }
+    }
+    return dataUpdate
+}
 
 
 
