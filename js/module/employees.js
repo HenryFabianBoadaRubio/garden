@@ -132,3 +132,21 @@ export const getAllEmployeesWithoutOffice = async() => {
     }
     return dataUpdate
 }
+
+//5.Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado. //no encuentro como asociar clientes y empleados a la final ninguno esta null...
+
+export const getAllEmployeesWithoutClient = async() => {
+    let res = await fetch("http://localhost:5502/employees")
+    let dataEmployees = await res.json()
+    let dataUpdate = []
+
+    for (let employee of dataEmployees) {
+        if (employee.client_name == null) {
+            dataUpdate.push({
+                nombre: `${employee.name} ${employee.lastname1} ${employee.lastname2}`,
+                puesto: employee.position
+            })
+        }
+    }
+    return dataUpdate
+}
