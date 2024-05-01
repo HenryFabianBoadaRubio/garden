@@ -32,7 +32,8 @@ import {
     getAllClientsNotRequest,
     getAllClientsNotRequestsAndPay,
     getAllEmployeesWithoutClientAndOffice,
-    getAllEmployeesNotOfficesAndNotClients
+    getAllEmployeesNotOfficesAndNotClients,
+    getAllClientsAndRequestsNotPay
 
 } from "./module/clients.js"
 
@@ -58,7 +59,8 @@ import {
 import {
     getAllGamaOrnamentales,
     getAllProducts,
-    getAllProductsNotRequest
+    // getAllProductsNotRequest,
+    
     
 } from "./module/products.js"
 
@@ -105,10 +107,10 @@ import {
 // console.log(await getAllEmployeesWithoutClient()); //5 Ejercicio Composición externa
 // console.log(await getAllEmployeesWithoutClientAndOffice()); //6 Ejercicio Composición externa
 // console.log(await getAllEmployeesNotOfficesAndNotClients()); //7 Ejercicio Composición externa
-console.log(await getAllProductsNotRequest()); //8 Ejercicio Composición externa
-// console.log(await getAllClientsWithLateRequests()); //9 Ejercicio Composición externa
+// console.log(await getAllProductsNotRequest()); //8 Ejercicio Composición externa
+// console.log(await getAllProductsNotRequest()); //9 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //10 Ejercicio Composición externa
-// console.log(await getAllClientsWithLateRequests()); //11 Ejercicio Composición externa
+console.log(await getAllClientsAndRequestsNotPay()); //11 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //12 Ejercicio Composición externa
 
 

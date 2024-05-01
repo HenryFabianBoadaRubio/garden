@@ -59,20 +59,22 @@ export const getAllProducts = async ()=>{
 //     });
 //     return dataUpdate
 // }
-import { getAllRequests } from "./requests.js";
+// import { getAllRequests } from "./requests.js";
 
-export const getAllProductsNotRequest = async () => {
-    try {
-        const dataProducts = await getAllProducts();
-        const dataRequests = await getAllRequests();
+// export const getAllProductsNotRequest = async () => {
+//     try {
+//         const dataProducts = await getAllProducts();
+//         const dataRequests = await getAllRequests();
 
-        const productsInRequests = new Set(dataRequests.flatMap(request => request.products.map(product => product.id)));
-        const productsNotInRequests = dataProducts.filter(product => !productsInRequests.has(product.id));
+//         const productsInRequests = new Set(dataRequests.flatMap(request => request.products.map(product => product.id)));
+//         const productsNotInRequests = dataProducts.filter(product => !productsInRequests.has(product.id));
 
-        return productsNotInRequests;
-    } catch (error) {
-        console.error("Error en getAllProductsNotRequest:", error);
-        return [];
-    }
-};
+//         return productsNotInRequests;
+//     } catch (error) {
+//         console.error("Error en getAllProductsNotRequest:", error);
+//         return [];
+//     }
+// };
+
+
 
