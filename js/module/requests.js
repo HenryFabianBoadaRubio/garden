@@ -83,9 +83,12 @@ export const getAllDeliveredJanuary = async ()=>{
     let data= await res.json();
     let dataUpdate=[];
     data.forEach(val=>{
-       dataUpdate.push({
+        if(val.date_delivery && val.date_delivery.split("-")[1]==="01"){
+            dataUpdate.push({
+                ...val
+            });
+        }
     });
-})
     return dataUpdate
     }   
 
