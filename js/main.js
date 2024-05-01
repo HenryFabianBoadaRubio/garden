@@ -11,7 +11,8 @@ import {
     getAllNameRepresentSales,
     getAllEmployeesWithBoss,
     getAllEmployeesWithBossAndBoss,
-    getAllEmployeesWithoutOffice
+    getAllEmployeesWithoutOffice,
+    getAllEmployees
     
 } from "./module/employees.js";
 
@@ -29,7 +30,8 @@ import {
     getAllClientsWithLateRequests,
     getAllClientsNotPay,
     getAllClientsNotRequest,
-    getAllClientsNotRequestsAndPay
+    getAllClientsNotRequestsAndPay,
+    getAllEmployeesWithoutClientAndOffice
 
 } from "./module/clients.js"
 
@@ -96,9 +98,9 @@ import {
 // console.log(await getAllClientsNotPay()); //1 Ejercicio Composición externa
 // console.log(await getAllClientsNotRequest()); //2 Ejercicio Composición externa
 // console.log(await getAllClientsNotRequestsAndPay()); //3 Ejercicio Composición externa
-console.log(await getAllEmployeesWithoutOffice()); //4 Ejercicio Composición externa
-// console.log(await getAllClientsWithLateRequests()); //5 Ejercicio Composición externa
-// console.log(await getAllClientsWithLateRequests()); //6 Ejercicio Composición externa
+// console.log(await getAllEmployeesWithoutOffice()); //4 Ejercicio Composición externa
+// console.log(await getAllEmployeesWithoutClient()); //5 Ejercicio Composición externa
+console.log(await getAllEmployeesWithoutClientAndOffice()); //6 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //7 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //8 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //9 Ejercicio Composición externa
@@ -107,5 +109,5 @@ console.log(await getAllEmployeesWithoutOffice()); //4 Ejercicio Composición ex
 // console.log(await getAllClientsWithLateRequests()); //12 Ejercicio Composición externa
 
 
-// console.log(await getAllRequests());
+// console.log(await getAllEmployees());
 

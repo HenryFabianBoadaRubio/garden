@@ -150,3 +150,21 @@ export const getAllEmployeesWithoutClient = async() => {
     }
     return dataUpdate
 }
+
+
+//parte que usare para el ejercicio 6 de composicion externa
+
+export const getAllEmployees = async () => {
+    let res = await fetch("http://localhost:5502/employees")
+    let dataEmployees = await res.json()
+    let dataUpdate = []
+    dataEmployees.forEach(val => {
+        dataUpdate.push({
+            codigo_empleado :val.employee_code,
+            nombre: `${val.name} ${val.lastname1} ${val.lastname2}`,
+            puesto: val.position,
+            codigo_oficina: val.code_office
+        })
+    })
+    return dataUpdate
+}

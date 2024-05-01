@@ -411,5 +411,38 @@ export const getAllClientsNotRequestsAndPay = async ()=>{
 
 
 
-
-
+// 6.Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado junto con los datos de la oficina donde trabajan.
+import {getAllEmployees} from "./employees.js"
+export const getAllEmployeesWithoutClientAndOffice =async ()=>{
+    let dataEmployees = await getAllEmployees();
+    let dataClients = await getAllClients();
+    let dataUpdate = [];
+    let seenEmployees = new Set(); // Utilizamos un conjunto para registrar los empleados vistos
+    
+    for (let employee of dataEmployees) {
+        let hasAssociatedClient = false;
+    
+        // Verificar si el empleado tiene algún cliente asociado
+        for (let client of dataClients) {
+            if (employee.codigo_empleado === client.codigo) {
+                hasAssociatedClient = true;
+                break; // No es necesario seguir buscando más clientes para este empleado
+            }
+        }
+    
+        // Si el empleado no tiene ningún cliente asociado, se agrega a dataUpdate
+        if (!hasAssociatedClient) {
+            const employeeKey = `${employee.nombre}-${employee.codigo_empleado}`;
+            if (!seenEmployees.has(employeeKey)) {
+                dataUpdate.push({
+                    codigo_empleado: employee.codigo_empleado,
+                    nombre: employee.nombre,
+                    codigo_oficina: employee.codigo_oficina
+                });
+                seenEmployees.add(employeeKey); // Agregamos el empleado al conjunto de empleados vistos
+            }
+        }
+    }
+    
+    return dataUpdate;
+}
