@@ -1,7 +1,9 @@
 // 11. Devuelve un listado de las diferentes gamas de producto que ha comprado cada cliente.
-
+import {getAllProducts} from "./products.js";
+import {getAllRequests} from "./requests.js";
+import {getAllClients} from "./clients.js";
 export const getAllGamasByClient = async() => {
-    let res = await fetch("http://localhost:5507/request_details")
+    let res = await fetch("http://localhost:5503/gama")
     let dataProductos = await getAllProducts()
     let dataRequestDetails = await res.json()
     let dataRequests = await getAllRequests()
@@ -11,10 +13,10 @@ export const getAllGamasByClient = async() => {
     // Recorremos los clientes
     for (let cliente of dataClients) {
         let datosCliente = {
-            client_code: cliente.client_code,
-            client_name: cliente.client_name,
+            client_code: cliente.codigo_cliente,
+            client_name: cliente.nombre_cliente,
             boughtGamas: new Set(),
-            code_employee_sales_manager: cliente.code_employee_sales_manager
+            // code_employee_sales_manager: cliente.code_employee_sales_manager
         }
 
         // Reviso todas las request que han habido
@@ -25,7 +27,7 @@ export const getAllGamasByClient = async() => {
                         for (let product of dataProductos) {
                             if (requestDetails.product_code == product.code_product) {
                                 // Desestructuro su gama
-                                let {gama} = product
+                                let {gama} = product;
                                 // Añado su gama a los datos de este cliente que genere al inicio
                                 datosCliente.boughtGamas.add(gama)
                             }
@@ -35,18 +37,18 @@ export const getAllGamasByClient = async() => {
                 
             }
         }
-}
+    
        // Convierto las gamas compradas del cliente en array
-       datosCliente.boughtGamas = Array.from(datosCliente.boughtGamas)
+       datosCliente.boughtGamas = Array.from(datosCliente.boughtGamas);
        // Como hay clientes que no compraron productos de ninguna gama, valido que los productos comprados sean 1 o mas
        if (datosCliente.boughtGamas.length >= 1) {
            // Si el cliente si ha comprado dataProductos, los pusheo a la dataUpdate
            dataUpdate.push(datosCliente)
        }
-       return dataUpdate
-   }
-   // De esta forma vuelve el "perfil" de un cliente que ha comprado tres gamas
-   // {
-   //     client_name: 'Naturagua',
-   //     boughtGamas: [ 'Herramientas', 'Frutales', 'Ornamentales' ]
-   // }
+    }
+    return dataUpdate;
+}
+//    De esta forma vuelve el "perfil" de un cliente que ha comprado tres gamas
+//    {
+//        client_name: 'Naturagua',
+//        boughtGamas: [ 'Herramientas', 'Frutales', 'Ornamentales' ];

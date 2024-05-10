@@ -168,3 +168,38 @@ export const getAllEmployees = async () => {
     })
     return dataUpdate
 }
+
+
+// 12.Devuelve un listado con los datos de los empleados que no tienen clientes asociados y el nombre de su jefe asociado.
+import {getAllClients} from "./clients.js"
+export const getAllEmployeesWithBossAndNotClients = async () => {
+    let res = await fetch("http://localhost:5502/employees");
+    let dataEmployees = await res.json();
+    let dataUpdate = [];
+
+    // Obtener los clientes asociados a cada empleado
+    let associatedClients = await getAllClients();
+
+    for (let employee of dataEmployees) {
+        let hasAssociatedClients = false;
+
+        // Verificar si el empleado tiene clientes asociados
+        if (associatedClients.hasOwnProperty(employee.employee_code)) {
+            hasAssociatedClients = true;
+        }
+
+        // Si el empleado no tiene clientes asociados, se agrega al arreglo dataUpdate
+        if (!hasAssociatedClients) {
+            // Verificar si el jefe del empleado existe
+            let boss = dataEmployees.find(e => e.employee_code === employee.code_boss);
+            if (boss) {
+                dataUpdate.push({
+                    employee_name: `${employee.name} ${employee.lastname1} ${employee.lastname2}`,
+                    boss_name: `${boss.name} ${boss.lastname1} ${boss.lastname2}`
+                });
+            }
+        }
+    }
+
+    return dataUpdate;
+};

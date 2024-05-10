@@ -12,7 +12,8 @@ import {
     getAllEmployeesWithBoss,
     getAllEmployeesWithBossAndBoss,
     getAllEmployeesWithoutOffice,
-    getAllEmployees
+    getAllEmployees,
+    getAllEmployeesWithBossAndNotClients,
     
 } from "./module/employees.js";
 
@@ -63,6 +64,11 @@ import {
     
     
 } from "./module/products.js"
+import {
+    getAllGamasByClient
+    
+    
+} from "./module/gama.js"
 
 // console.log(await getAllNameRepresentSales());
 
@@ -97,6 +103,8 @@ import {
 // console.log(await getAllEmployeesWithBoss()); //8 Ejercicio multitabla
 // console.log(await getAllEmployeesWithBossAndBoss()); //9 Ejercicio multitabla
 // console.log(await getAllClientsWithLateRequests()); //10 Ejercicio multitabla
+// console.log(await getAllGamasByClient()); //11 Ejercicio multitabla
+
 
 
 // Consultas multitabla (Composición externa)
@@ -110,9 +118,9 @@ import {
 // console.log(await getAllProductsNotRequest()); //8 Ejercicio Composición externa
 // console.log(await getAllProductsNotRequest()); //9 Ejercicio Composición externa
 // console.log(await getAllClientsWithLateRequests()); //10 Ejercicio Composición externa
-console.log(await getAllClientsAndRequestsNotPay()); //11 Ejercicio Composición externa
-// console.log(await getAllClientsWithLateRequests()); //12 Ejercicio Composición externa
+// console.log(await getAllClientsAndRequestsNotPay()); //11 Ejercicio Composición externa
+// console.log(await getAllEmployeesWithBossAndNotClients()); //12 Ejercicio Composición externa
 
 
-// console.log(await getAllProducts());
+// console.log(await getAllGamasByClient());
 
