@@ -883,6 +883,12 @@ btn.forEach(val =>{
                 
             `;
         }
+        if(e.target.innerHTML=="requests"){
+            report__details.innerHTML = /*html*/`
+            <my-details logic="request_1" text="7. Devuelve un listado con los distintos estados por los que puede pasar un pedido."></my-details>
+                
+            `;
+        }
     })
 });
 

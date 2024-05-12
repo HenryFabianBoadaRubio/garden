@@ -1,6 +1,7 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
 import {getClientsFromSpain} from "../module/clients.js"    
+import {orderStatusList} from "../module/requests.js"
 
 
 
@@ -153,6 +154,27 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 7. Devuelve un listado con los distintos estados por los que puede pasar un pedido.
+
+    async orderStatusListDesing() {
+        let data = await orderStatusList()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Estados pedidos</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                        <p><b>Nombre_estados: </b>${val}</p>
+                      
+
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -179,7 +201,6 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
 
 
 
-    
 static get observedAttributes() {
         return ["logic"];
     }
@@ -190,7 +211,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="employe_2") this.getBossFullNameAndEmailDesing() //4
         if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         if(name=="logic" && now=="client_1") this.getClientsFromSpainDesing() //6
-        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        if(name=="logic" && now=="request_1") this.orderStatusListDesing() //7
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
