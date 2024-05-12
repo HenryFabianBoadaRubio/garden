@@ -864,31 +864,32 @@ btn.forEach(val =>{
 
         if(e.target.innerHTML=="offices"){
             report__details.innerHTML = /*html*/`
-            <my-details logic="office_1" text="1. Devuelve un listado con el código de oficina y la ciudad donde hay oficinas."></my-details>
-            <my-details logic="office_2" text="2. Devuelve un listado con la ciudad y el teléfono de las oficinas de España."></my-details>
+            <my-details logic="office_1" text="1.Devuelve un listado con el código de oficina y la ciudad donde hay oficinas."></my-details>
+            <my-details logic="office_2" text="2.Devuelve un listado con la ciudad y el teléfono de las oficinas de España."></my-details>
                 
             `;
         }
         if(e.target.innerHTML=="employees"){
             report__details.innerHTML = /*html*/`
-            <my-details logic="employe_1" text="3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe "></my-details>
-            <my-details logic="employe_2" text="4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa. "></my-details>
-            <my-details logic="employe_3" text="5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas. "></my-details>
+            <my-details logic="employe_1" text="3.Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe "></my-details>
+            <my-details logic="employe_2" text="4.Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa. "></my-details>
+            <my-details logic="employe_3" text="5.Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas. "></my-details>
                
             `;
         }
         if(e.target.innerHTML=="clients"){
             report__details.innerHTML = /*html*/`
-            <my-details logic="client_1" text="6. Devuelve un listado con el nombre de los todos los clientes españoles."></my-details>
+            <my-details logic="client_1" text="6.Devuelve un listado con el nombre de los todos los clientes españoles."></my-details>
                 
             `;
         }
         if(e.target.innerHTML=="requests"){
             report__details.innerHTML = /*html*/`
-            <my-details logic="request_1" text="7. Devuelve un listado con los distintos estados por los que puede pasar un pedido."></my-details>
-            <my-details logic="request_2" text="9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo."></my-details>
-            <my-details logic="request_3" text="10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada."></my-details>
+            <my-details logic="request_1" text="7.Devuelve un listado con los distintos estados por los que puede pasar un pedido."></my-details>
+            <my-details logic="request_2" text="9.Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo."></my-details>
+            <my-details logic="request_3" text="10.Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada."></my-details>
             <my-details logic="request_4" text="11.Devuelve un listado de todos los pedidos que fueron **rechazados** en 2009."></my-details>
+            <my-details logic="request_5" text="12.Devuelve un listado de todos los pedidos que han sido **entregados** en el mes de enero de cualquier año."></my-details>
                 
             `;
         }

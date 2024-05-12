@@ -1,7 +1,7 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
 import {getClientsFromSpain} from "../module/clients.js"    
-import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009} from "../module/requests.js"
+import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
 import {customerPaymentCode2008 } from "../module/payments.js"
 
 
@@ -275,9 +275,32 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 2. Devuelve un listado de todos los pedidos que han sido **entregados** en el mes de enero de cualquier año.
 
+    async getAllDeliveredJanuaryDesing() {
+        let data = await getAllDeliveredJanuary()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>pedidos entregados enero</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                        <p><b>Codigo_solicitud: </b>${val.code_request}</p>
+                            <p><b>Fecha_solicitud: </b>${val.date_request}</p>
+                            <p><b>Fecha_esperada: </b>${val.date_wait}</p>
+                            <p><b>Fecha_entrega: </b>${val.date_delivery}</p>
+                            <p><b>Estado: </b>${val.status}</p>
+                            <p><b>Codigo_cliente: </b>${val.code_client}</p>
+                            <p><b>id: </b>${val.id}</p>
 
-
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -305,7 +328,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="request_2") this.getAllCodeRequestLateDesing() //9
         if(name=="logic" && now=="request_3") this.getAllEarlyCodeRequestDesing() //10
         if(name=="logic" && now=="request_4") this.getAllRejected2009Desing() //11
-        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        if(name=="logic" && now=="request_5") this.getAllDeliveredJanuaryDesing() //12
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
