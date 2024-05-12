@@ -1,7 +1,7 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
 import {getClientsFromSpain} from "../module/clients.js"    
-import {orderStatusList, getAllCodeRequestLate} from "../module/requests.js"
+import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest} from "../module/requests.js"
 import {customerPaymentCode2008 } from "../module/payments.js"
 
 
@@ -224,8 +224,29 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
 
+    async getAllEarlyCodeRequestDesing() {
+        let data = await getAllEarlyCodeRequest()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>pedidos con entrega anticipada 2 días</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                        <p><b>Codigo_pedido: </b>${val.Codigo_pedido}</p>
+                        <p><b>Codigo_cliente: </b>${val.Codigo_cliente}</p>
+                         <p><b>Fecha_esperada: </b>${val.Fecha_esperada}</p>
+                         <p><b>Fecha_entrega: </b>${val.Fecha_entrega}</p>
 
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -257,7 +278,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="request_1") this.orderStatusListDesing() //7
         if(name=="logic" && now=="payment_1") this.customerPaymentCode2008Desing() //8
         if(name=="logic" && now=="request_2") this.getAllCodeRequestLateDesing() //9
-        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        if(name=="logic" && now=="request_3") this.getAllEarlyCodeRequestDesing() //10
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
