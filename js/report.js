@@ -873,6 +873,7 @@ btn.forEach(val =>{
             report__details.innerHTML = /*html*/`
             <my-details logic="employe_1" text="3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe "></my-details>
             <my-details logic="employe_2" text="4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa. "></my-details>
+            <my-details logic="employe_3" text="5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas. "></my-details>
                
             `;
         }

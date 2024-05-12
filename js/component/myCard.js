@@ -1,5 +1,5 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
-import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail}  from "../module/employees.js"
+import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
 
 
 
@@ -108,7 +108,29 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         // })
     }
 
+    // 5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas.
 
+    async getAllDesing() {
+        let data = await getAll()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Empleados que no son representantes de ventas</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                        <p><b>Nombre_empleado: </b>${val.nombre}</p>
+                         <p><b>Apellidos: </b>${val.apellidos}</p>
+                         <p><b>Puesto: </b>${val.puesto}</p>
+                      
+
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -120,7 +142,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="office_2") this.getAllOfficesFromSpainCityAndMovilDesing() //2
         if(name=="logic" && now=="employe_1") this.getAllEmployeesWithBossAndCodeSevenDesing()//3
         if(name=="logic" && now=="employe_2") this.getBossFullNameAndEmailDesing() //4
-        // if(name=="logic" && now=="office_1") this.getAllOfficesCodeAndCityDesing()
+        if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         
     
     
