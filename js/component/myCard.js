@@ -1,6 +1,6 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
-import {getClientsFromSpain} from "../module/clients.js"    
+import {getClientsFromSpain,getAllClientsMadrid1130} from "../module/clients.js"    
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods } from "../module/payments.js"
 import {getAllGamaOrnamentales} from "../module/products.js"
@@ -379,8 +379,34 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 16. Devuelve un listado con todos los clientes que sean de la ciudad de `Madrid` y cuyo representante de ventas tenga el código de empleado `11` o `30`.
+
+    async getAllClientsMadrid1130Desing() {
+        let data = await getAllClientsMadrid1130()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Clientes madrid - representante 11-30</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                        <p><b>Codigo_cliente: </b>${val.client_code}</p>
+                        <p><b>Nombre_cliente: </b>${val.client_name}</p>
+                         <p><b>Celular: </b>${val.phone}</p>
+                         <p><b>Direccion: </b>${val.address1}</p>
+                         <p><b>Ciudad: </b>${val.city}</p>
+                         <p><b>Pais: </b>${val.country}</p>
+                         <p><b>Codigo_representante: </b>${val.code_employee_sales_manager}</p>
+                         <p><b>id: </b>${val.id}</p>
 
 
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 static get observedAttributes() {
@@ -402,7 +428,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="payment_2") this.getAllPaymentsPaypal2008Desing() //13
         if(name=="logic" && now=="payment_3") this.getAllPaymentsMethodsDesing() //14
         if(name=="logic" && now=="product_1") this.getAllGamaOrnamentalesDesing() //15
-        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
 
         
     
