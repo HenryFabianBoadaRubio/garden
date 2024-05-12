@@ -2,6 +2,7 @@ import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../mod
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
 import {getClientsFromSpain} from "../module/clients.js"    
 import {orderStatusList} from "../module/requests.js"
+import {customerPaymentCode2008 } from "../module/payments.js"
 
 
 
@@ -176,6 +177,27 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
+    async customerPaymentCode2008Desing() {
+        let data = await customerPaymentCode2008()
+        data.forEach(payment => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Estados pedidos</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                       <p><b>Codigo_cliente: </b>${payment}</p>
+
+                      
+
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -212,7 +234,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         if(name=="logic" && now=="client_1") this.getClientsFromSpainDesing() //6
         if(name=="logic" && now=="request_1") this.orderStatusListDesing() //7
-        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        if(name=="logic" && now=="payment_1") this.customerPaymentCode2008Desing() //8
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
