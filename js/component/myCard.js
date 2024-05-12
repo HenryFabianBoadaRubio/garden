@@ -3,7 +3,7 @@ import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  fr
 import {getClientsFromSpain} from "../module/clients.js"    
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods } from "../module/payments.js"
-
+import {getAllGamaOrnamentales} from "../module/products.js"
 
 
 export class Mycard extends HTMLElement {
@@ -350,7 +350,34 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 15. Devuelve un listado con todos los productos que pertenecen a la gama `Ornamentales` y que tienen más de `100` unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio.
 
+    async getAllGamaOrnamentalesDesing() {
+        let data = await getAllGamaOrnamentales()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Productos gama ornamentales</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Codigo_producto: </b>${val.code_product}</p>
+                            <p><b>Nombre: </b>${val.name}</p>
+                            <p><b>Gama: </b>${val.gama}</p>
+                            <p><b>Dimension: </b>${val.dimension}</p>
+                            <p><b>Provedor: </b>${val.provider}</p>
+                            <p><b>Stock: </b>${val.stock}</p>
+                            <p><b>Precio_venta: </b>${val.price_sale}</p>
+                            <p><b>id: </b>${val.id}</p>
+
+
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -374,7 +401,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="request_5") this.getAllDeliveredJanuaryDesing() //12
         if(name=="logic" && now=="payment_2") this.getAllPaymentsPaypal2008Desing() //13
         if(name=="logic" && now=="payment_3") this.getAllPaymentsMethodsDesing() //14
-        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        if(name=="logic" && now=="product_1") this.getAllGamaOrnamentalesDesing() //15
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
 
         
