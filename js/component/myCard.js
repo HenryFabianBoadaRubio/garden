@@ -2,7 +2,7 @@ import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../mod
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
 import {getClientsFromSpain} from "../module/clients.js"    
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
-import {customerPaymentCode2008,getAllPaymentsPaypal2008 } from "../module/payments.js"
+import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods } from "../module/payments.js"
 
 
 
@@ -328,8 +328,27 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 14. Devuelve un listado con todas las formas de pago que aparecen en la tabla `pago`. Tenga en cuenta que no deben aparecer formas de pago repetidas.
+
+    async getAllPaymentsMethodsDesing() {
+        let data = await getAllPaymentsMethods()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>lista formas de pago</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                         <p><b>Tipo_pago: </b>${val}</p>
 
 
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -354,7 +373,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="request_4") this.getAllRejected2009Desing() //11
         if(name=="logic" && now=="request_5") this.getAllDeliveredJanuaryDesing() //12
         if(name=="logic" && now=="payment_2") this.getAllPaymentsPaypal2008Desing() //13
-        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        if(name=="logic" && now=="payment_3") this.getAllPaymentsMethodsDesing() //14
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
         // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
 
