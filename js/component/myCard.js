@@ -1,6 +1,6 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
-
+import {getClientsFromSpain} from "../module/clients.js"    
 
 
 
@@ -131,9 +131,55 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
             `
         })
     }
+    // 6. Devuelve un listado con el nombre de los todos los clientes españoles.
+    async getClientsFromSpainDesing() {
+        let data = await getClientsFromSpain()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Clientes españoles</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                       <p><b>Nombre_Clientes: </b>${val.nombre}</p>
+                         <p><b>Nacionalidad: </b>${val.nacionalidad}</p>
+                      
+
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 static get observedAttributes() {
         return ["logic"];
     }
@@ -143,6 +189,18 @@ static get observedAttributes() {
         if(name=="logic" && now=="employe_1") this.getAllEmployeesWithBossAndCodeSevenDesing()//3
         if(name=="logic" && now=="employe_2") this.getBossFullNameAndEmailDesing() //4
         if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        if(name=="logic" && now=="client_1") this.getClientsFromSpainDesing() //6
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+        // if(name=="logic" && now=="employe_3") this.getAllDesing() //5
+
         
     
     
