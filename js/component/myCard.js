@@ -1,5 +1,5 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
-import {getAllEmployeesWithBossAndCodeSeven}  from "../module/employees.js"
+import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail}  from "../module/employees.js"
 
 
 
@@ -84,7 +84,29 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
             `
         })
     }
+    // 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa.
+    async getBossFullNameAndEmailDesing() {
+        let data = await getBossFullNameAndEmail()
+        // data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Nombre jefe mas puesto de la empresa</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                       <p><b>Puesto: </b>${data.puesto}</p>
+                         <p><b>Nombre: </b>${data.nombre}</p>
+                         <p><b>Apellidos: </b>${data.apellidos}</p>
+                        <p><b>Email: </b>${data.email}</p>
+                      
 
+                        </div>
+                    </div>
+                </div>
+            `
+        // })
+    }
 
 
 
@@ -97,7 +119,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="office_1") this.getAllOfficesCodeAndCityDesing() //1
         if(name=="logic" && now=="office_2") this.getAllOfficesFromSpainCityAndMovilDesing() //2
         if(name=="logic" && now=="employe_1") this.getAllEmployeesWithBossAndCodeSevenDesing()//3
-        // if(name=="logic" && now=="office_1") this.getAllOfficesCodeAndCityDesing()
+        if(name=="logic" && now=="employe_2") this.getBossFullNameAndEmailDesing() //4
         // if(name=="logic" && now=="office_1") this.getAllOfficesCodeAndCityDesing()
         
     
