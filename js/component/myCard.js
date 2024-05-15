@@ -1,5 +1,5 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil,getOfficesWithClientsFromFuenlabrada} from "../module/offices.js"
-import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll,getAllEmployeesWithBoss}  from "../module/employees.js"
+import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll,getAllEmployeesWithBoss,getAllEmployeesWithBossAndBoss}  from "../module/employees.js"
 import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSales,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay,getAllClientsAndRepresentSalesOffices} from "../module/clients.js"    
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods } from "../module/payments.js"
@@ -609,9 +609,29 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 9. Devuelve un listado que muestre el nombre de cada empleados, el nombre de su jefe y el nombre del jefe de sus jefe.
+
+    async getAllEmployeesWithBossAndBossDesing() {
+        let data = await getAllEmployeesWithBossAndBoss()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Empleados y sus jefes de sus jefes </div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>nombre_empleado: </b>${val.nombre_empleado}</p>
+                            <p><b>nombre_jefe: </b>${val.nombre_bigBoss}</p>
+                            <p><b>nombre_jefe_jefe: </b>${val.nombre_bigBoss_bigBoss}</p>
 
 
-
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 static get observedAttributes() {
         return ["logic"];
@@ -643,7 +663,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="office_3") this.getOfficesWithClientsFromFuenlabradaDesing() //22
         if(name=="logic" && now=="client_8") this.getAllClientsAndRepresentSalesOfficesDesing() //23
         if(name=="logic" && now=="employe_4") this.getAllEmployeesWithBossDesing() //24
-        // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
+        if(name=="logic" && now=="employe_5") this.getAllEmployeesWithBossAndBossDesing() //25
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16

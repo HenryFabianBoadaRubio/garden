@@ -880,6 +880,7 @@ btn.forEach(val =>{
             
             
             <my-details logic="employe_4" text="24.Devuelve un listado con el nombre de los empleados junto con el nombre de sus jefes."></my-details>
+            <my-details logic="employe_5" text="25.Devuelve un listado que muestre el nombre de cada empleados, el nombre de su jefe y el nombre del jefe de sus jefe."></my-details>
 
             `;
         }
