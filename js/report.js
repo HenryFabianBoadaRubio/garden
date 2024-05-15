@@ -800,9 +800,9 @@
 //                 <div class="card__body">
 //                     <div class="body__marck">
                        
-//                         <p><b>nombre_empleado: </b>${val.nombre_empleado}</p>
-//                         <p><b>nombre_jefe: </b>${val.nombre_bigBoss}</p>
-//                         <p><b>nombre_jefe_jefe: </b>${val.nombre_bigBoss_bigBoss}</p>
+    //                         <p><b>nombre_empleado: </b>${val.nombre_empleado}</p>
+    //                         <p><b>nombre_jefe: </b>${val.nombre_bigBoss}</p>
+    //                         <p><b>nombre_jefe_jefe: </b>${val.nombre_bigBoss_bigBoss}</p>
 
                         
                         
@@ -896,6 +896,7 @@ btn.forEach(val =>{
             <my-details logic="client_6" text="20.Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante."></my-details>
             <my-details logic="client_7" text="21.Devuelve el nombre de los clientes que **no** hayan hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante."></my-details>
             <my-details logic="client_8" text="23.Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante."></my-details>
+            <my-details logic="client_9" text="26.Devuelve el nombre de los clientes a los que no se les ha entregado a tiempo un pedido."></my-details>
 
 
             `;
