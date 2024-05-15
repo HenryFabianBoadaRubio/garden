@@ -1,5 +1,5 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil,getOfficesWithClientsFromFuenlabrada} from "../module/offices.js"
-import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
+import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll,getAllEmployeesWithBoss}  from "../module/employees.js"
 import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSales,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay,getAllClientsAndRepresentSalesOffices} from "../module/clients.js"    
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods } from "../module/payments.js"
@@ -586,9 +586,28 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 8. Devuelve un listado con el nombre de los empleados junto con el nombre de sus jefes.
+
+    async getAllEmployeesWithBossDesing() {
+        let data = await getAllEmployeesWithBoss()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Empleados y sus jefes </div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>nombre_empleado: </b>${val.employee_name}</p>
+                            <p><b>nombre_jefe: </b>${val.boss_name}</p>
 
 
-
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -623,7 +642,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="client_7") this.getAllClientsAndRepresentSalesandofficeNotPayDesing() //21
         if(name=="logic" && now=="office_3") this.getOfficesWithClientsFromFuenlabradaDesing() //22
         if(name=="logic" && now=="client_8") this.getAllClientsAndRepresentSalesOfficesDesing() //23
-        // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
+        if(name=="logic" && now=="employe_4") this.getAllEmployeesWithBossDesing() //24
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
