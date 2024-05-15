@@ -925,6 +925,12 @@ btn.forEach(val =>{
                 
             `;
         }
+        if(e.target.innerHTML=="gama"){
+            report__details.innerHTML = /*html*/`
+            <my-details logic="gam_1" text="27.Devuelve un listado de las diferentes gamas de producto que ha comprado cada cliente."></my-details>
+                
+            `;
+        }
     })
 });
 

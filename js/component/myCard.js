@@ -4,6 +4,7 @@ import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSal
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods } from "../module/payments.js"
 import {getAllGamaOrnamentales} from "../module/products.js"
+import {getAllGamasByClient} from "../module/gama.js"
 
 
 export class Mycard extends HTMLElement {
@@ -656,6 +657,31 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 11. Devuelve un listado de las diferentes gamas de producto que ha comprado cada cliente.
+
+    async getAllGamasByClientDesing() {
+        let data = await getAllGamasByClient()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>${val.client_name}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Gamas: </b>${val.boughtGamas}</p>
+
+
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
+
+
+
+
 
 
 static get observedAttributes() {
@@ -690,7 +716,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="employe_4") this.getAllEmployeesWithBossDesing() //24
         if(name=="logic" && now=="employe_5") this.getAllEmployeesWithBossAndBossDesing() //25
         if(name=="logic" && now=="client_9") this.getAllClientsWithLateRequestsDesing() //26
-        // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
+        if(name=="logic" && now=="gam_1") this.getAllGamasByClientDesing() //27
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         
     
