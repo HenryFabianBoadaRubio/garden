@@ -1,6 +1,6 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
-import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSales} from "../module/clients.js"    
+import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSales,getAllClientsAndRepresentSalesPayments} from "../module/clients.js"    
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods } from "../module/payments.js"
 import {getAllGamaOrnamentales} from "../module/products.js"
@@ -436,8 +436,32 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 2. Muestra el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes de ventas.
+
+    
+    async getAllClientsAndRepresentSalesPaymentsDesing() {
+        let data = await getAllClientsAndRepresentSalesPayments()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Clientes con pagos Y representante de ventas </div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Codigo_cliente: </b>${val.codigo_pago_cliente}</p>
+                            <p><b>Nombre_cliente: </b>${val.nombre_cliente}</p>
+                            <p><b>Nombre_representante: </b>${val.nombre_representate}</p>
+                            <p><b>Apellido_representante: </b>${val.apellido_representante}</p>
+                            <p><b>Codigo_representante: </b>${val.codigo_representante_ventas}</p>
 
 
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -470,7 +494,7 @@ static get observedAttributes() {
 
         //MULTITABLAS
         if(name=="logic" && now=="client_3") this.getAllClientsAndRepresentSalesDesing() //17
-        // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
+        if(name=="logic" && now=="client_4") this.getAllClientsAndRepresentSalesPaymentsDesing() //18
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16

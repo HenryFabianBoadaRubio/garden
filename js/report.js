@@ -884,6 +884,7 @@ btn.forEach(val =>{
 
 
             <my-details logic="client_3" text="17.Obtén un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas."></my-details>
+            <my-details logic="client_4" text="18.Muestra el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes de ventas."></my-details>
 
 
             `;
