@@ -866,7 +866,10 @@ btn.forEach(val =>{
             report__details.innerHTML = /*html*/`
             <my-details logic="office_1" text="1.Devuelve un listado con el código de oficina y la ciudad donde hay oficinas."></my-details>
             <my-details logic="office_2" text="2.Devuelve un listado con la ciudad y el teléfono de las oficinas de España."></my-details>
-                
+             
+            
+            <my-details logic="office_3" text="22.Lista la dirección de las oficinas que tengan clientes en Fuenlabrada."></my-details>
+
             `;
         }
         if(e.target.innerHTML=="employees"){

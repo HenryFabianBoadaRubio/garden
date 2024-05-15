@@ -1,4 +1,4 @@
-import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil} from "../module/offices.js"
+import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil,getOfficesWithClientsFromFuenlabrada} from "../module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
 import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSales,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay} from "../module/clients.js"    
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
@@ -538,9 +538,29 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 6. Lista la dirección de las oficinas que tengan clientes en `Fuenlabrada`.
+
+    async getOfficesWithClientsFromFuenlabradaDesing() {
+        let data = await getOfficesWithClientsFromFuenlabrada()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>Oficinas clientes Fuenlabrada  </div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Codigo_oficina: </b>${val.code_office}</p>
+                            <p><b>Direccion_1: </b>${val.address}</p>
+                            <p><b>Direccion_2: </b>${val.address2}</p>
 
 
-
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
 
 
 
@@ -575,7 +595,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="client_5") this.getAllClientsAndRepresentSalesNotPaymentsDesing() //19
         if(name=="logic" && now=="client_6") this.getAllClientsAndRepresentSalesandofficeAndPayDesing() //20
         if(name=="logic" && now=="client_7") this.getAllClientsAndRepresentSalesandofficeNotPayDesing() //21
-        // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
+        if(name=="logic" && now=="office_3") this.getOfficesWithClientsFromFuenlabradaDesing() //22
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
