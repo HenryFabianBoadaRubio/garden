@@ -1,6 +1,6 @@
 import{getAllOfficesCodeAndCity,getAllOfficesFromSpainCityAndMovil,getOfficesWithClientsFromFuenlabrada} from "../module/offices.js"
 import {getAllEmployeesWithBossAndCodeSeven, getBossFullNameAndEmail,getAll}  from "../module/employees.js"
-import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSales,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay} from "../module/clients.js"    
+import {getClientsFromSpain,getAllClientsMadrid1130,getAllClientsAndRepresentSales,getAllClientsAndRepresentSalesPayments,getAllClientsAndRepresentSalesNotPayments,getAllClientsAndRepresentSalesandofficeAndPay,getAllClientsAndRepresentSalesandofficeNotPay,getAllClientsAndRepresentSalesOffices} from "../module/clients.js"    
 import {orderStatusList, getAllCodeRequestLate,getAllEarlyCodeRequest,getAllRejected2009,getAllDeliveredJanuary} from "../module/requests.js"
 import {customerPaymentCode2008,getAllPaymentsPaypal2008,getAllPaymentsMethods } from "../module/payments.js"
 import {getAllGamaOrnamentales} from "../module/products.js"
@@ -562,6 +562,32 @@ async getAllOfficesFromSpainCityAndMovilDesing() {
         })
     }
 
+    // 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+
+    async getAllClientsAndRepresentSalesOfficesDesing() {
+        let data = await getAllClientsAndRepresentSalesOffices()
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/ `
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>clientes y representantes con oficina </div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>nombre_cliente: </b>${val.nombre_cliente}</p>
+                            <p><b>nombre_representate: </b>${val.nombre_representate}</p>
+                            <p><b>ciudad_oficina_representante: </b>${val.ciudad_oficina_representante}</p>
+
+
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    }
+
+
+
 
 
 
@@ -596,7 +622,7 @@ static get observedAttributes() {
         if(name=="logic" && now=="client_6") this.getAllClientsAndRepresentSalesandofficeAndPayDesing() //20
         if(name=="logic" && now=="client_7") this.getAllClientsAndRepresentSalesandofficeNotPayDesing() //21
         if(name=="logic" && now=="office_3") this.getOfficesWithClientsFromFuenlabradaDesing() //22
-        // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
+        if(name=="logic" && now=="client_8") this.getAllClientsAndRepresentSalesOfficesDesing() //23
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
         // if(name=="logic" && now=="client_2") this.getAllClientsMadrid1130Desing() //16
